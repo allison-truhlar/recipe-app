@@ -23,7 +23,6 @@ const getRecipe = async(req,res) =>{
     res.status(200).json(recipe)
 }
 
-
 //function to create a new recipe
 const createRecipe = async(req, res) => {
     const {url, name, recipeIngredient, recipeInstructions} = req.body
@@ -84,8 +83,6 @@ const updateRecipe = async(req, res) => {
     res.status(200).json({recipe})
 
 }
-
-
 
 module.exports = {
     getRecipes,
