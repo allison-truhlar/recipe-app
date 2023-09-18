@@ -1,4 +1,5 @@
-
+const User = require("../models/userModel")
+const mongoose = require("mongoose")
 
 //login user
 async function loginUser(req, res){
