@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 import { AuthContext } from "../context/AuthContext"
 
 export default function Signup(){
-    const {state, dispatch} = useContext(AuthContext)
+    const {dispatch} = useContext(AuthContext)
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
