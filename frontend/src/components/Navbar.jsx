@@ -7,6 +7,12 @@ export default function Navbar(){
                 <Link to="/">
                     <h1>Recipe Keeper</h1>
                 </Link>
+                <nav>
+                    <div>
+                        <Link to="/login">Log in</Link>
+                        <Link to="/signup">Sign up</Link>
+                    </div>
+                </nav>
             </div>
         </header>
     )
