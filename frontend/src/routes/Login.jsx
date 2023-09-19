@@ -6,15 +6,16 @@ export default function Login(){
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError]=useState(null)
+    const [isLoading, setIsLoading] = useState(null)
 
     async function handleSubmit(e){
         e.preventDefault()
-
-        const user = {email, password}
+        setIsLoading(true)
 
         const response = await fetch("/api/user/login", {
             method: "POST",
-            body: JSON.stringify(user),
+            body: JSON.stringify({email, password}),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -22,13 +23,21 @@ export default function Login(){
         const json = await response.json()
 
         if(!response.ok){
-            console.log(json.error)
+            setError(json.error)
+            setIsLoading(false)
         }
         if(response.ok){
-            console.log("logged in")
+            //save user to local storage
+            localStorage.setItem("user", JSON.stringify(json))
+
+            //update auth context
+            dispatch({type: "LOGIN", payload: json})
+
+            //update local state
             setEmail("")
             setPassword("")
-            dispatch({type: "LOGIN", payload: json})
+            setError(null)
+            setIsLoading(false)
         }
 
     }
@@ -51,7 +60,8 @@ export default function Login(){
                 value={password}
             />
 
-            <button>Login</button>
+            <button disabled={isLoading}>Login</button>
+            {error && <div className="error">{error}</div>}
         </form>
     )
 
