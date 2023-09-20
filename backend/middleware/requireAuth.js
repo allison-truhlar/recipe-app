@@ -1,22 +1,20 @@
 const jwt = require("jsonwebtoken")
+// const User = require("../models/userModel")
 
-export default function requireAuth(req, res, next){
+function requireAuth(req, res, next){
 
-    //verify authentication
-    const {authorization} = req.headers
+    const token = req.cookies.token
 
-    if (!authorization){
-        return res.status(401).json({error: "Authorization token required"})
+    if(!token){
+        return res.status(401).json({message:"uauthorized"})
     }
-
-    const token = authorization.split(" ")[1]
-
     try{
-        const {_id} = jwt.verify(token, process.env.SECRET)
-    } catch (error){
-        console.log(error)
-        res.status(401).json({error: "Request is not authorized"})
+        const decoded = jwt.verify(token, process.env.SECRET)
+        req._id = decoded._id
+        next()
+    } catch(error){
+        res.status(401).json({message: "unauthorized"})
     }
-
-
 }
+
+module.exports = requireAuth
