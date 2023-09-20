@@ -1,4 +1,6 @@
 const express = require("express")
+
+//import controllers
 const {
     getRecipes,
     getRecipe,
@@ -7,7 +9,14 @@ const {
     updateRecipe
 } = require("../controllers/recipeController")
 
+//import middleware
+const requireAuth = require("../middleware/requireAuth")
+
+// create router instance
 const router = express.Router()
+
+// require middleware
+router.use(requireAuth)
 
 // GET all recipes
 router.get("/", getRecipes)
