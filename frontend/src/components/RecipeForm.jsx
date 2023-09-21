@@ -1,5 +1,6 @@
 import { useState, useContext } from "react"
 import { RecipesContext } from "../context/RecipeContext"
+import { AuthContext } from "../context/AuthContext"
 
 export default function RecipeForm() {
     const [url, setUrl] = useState("")
@@ -9,6 +10,7 @@ export default function RecipeForm() {
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
     const {dispatch} = useContext(RecipesContext)
+    const {user} = useContext(AuthContext)
 
     function parseTextArea(input){
         //split the input by newline or a semicolon, filter out empty strings
@@ -25,6 +27,11 @@ export default function RecipeForm() {
 
     const handleSubmit = async (e) =>{
         e.preventDefault()
+
+        if(!user){
+            setError("You must be logged in")
+            return
+        }
 
         const recipe = {
             url, 
