@@ -25,9 +25,10 @@ export function RecipesContextProvider(props){
     const [state, dispatch] = useReducer(recipesReducer, {
         recipes: null
     })
+    // console.log('RecipeContext state:', state)
 
     return(
-        <RecipesContext.Provider value={{state, dispatch}}>
+        <RecipesContext.Provider value={{...state, dispatch}}>
             {props.children}
         </RecipesContext.Provider>
     )
