@@ -7,7 +7,7 @@ function requireAuth(req, res, next){
         next()
     } 
     if(!req.session.user){
-        return res.status(401).json({message:"uauthorized"})
+        return res.status(401).json({message:"unauthorized"})
     }
 }
 
