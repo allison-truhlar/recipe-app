@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext"
 export default function Login(){
     const {dispatch} = useContext(AuthContext)
 
-    const [email, setEmail] = useState("")
+    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError]=useState(null)
     const [isLoading, setIsLoading] = useState(null)
@@ -12,15 +12,17 @@ export default function Login(){
     async function handleSubmit(e){
         e.preventDefault()
         setIsLoading(true)
+        setError(null)
 
         const response = await fetch("/api/user/login", {
             method: "POST",
-            body: JSON.stringify({email, password}),
+            body: JSON.stringify({username, password}),
             headers: {
                 "Content-Type": "application/json"
             }
         })
         const json = await response.json()
+        console.log(json)
 
         if(!response.ok){
             setError(json.error)
@@ -28,13 +30,13 @@ export default function Login(){
         }
         if(response.ok){
             //save user to local storage
-            localStorage.setItem("user", JSON.stringify(json))
+            // localStorage.setItem("user", JSON.stringify(json))
 
             //update auth context
             dispatch({type: "LOGIN", payload: json})
 
             //update local state
-            setEmail("")
+            setUsername("")
             setPassword("")
             setError(null)
             setIsLoading(false)
@@ -46,11 +48,11 @@ export default function Login(){
         <form className="login" onSubmit={handleSubmit}>
             <h3>Login</h3>
 
-            <label>Email:</label>
+            <label>Username:</label>
             <input
-                type= "email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                type= "text"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
             />
 
             <label>Password:</label>

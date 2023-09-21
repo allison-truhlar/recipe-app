@@ -1,10 +1,15 @@
 import { useContext } from "react"
 import { RecipesContext } from "../context/RecipeContext"
+import { AuthContext } from "../context/AuthContext"
 
 export default function RecipeDetails({recipe}){
-    const {state, dispatch} = useContext(RecipesContext)
+    const {recipes, dispatch} = useContext(RecipesContext)
+    const {user} = useContext(AuthContext)
 
-    async function handleClick(id) {
+    async function handleDeleteClick(id) {
+        if(!user){
+            return
+        }
         
         const response = await fetch(`/api/recipes/${id}`, {
             method: "DELETE",
@@ -12,7 +17,7 @@ export default function RecipeDetails({recipe}){
         const json = await response.json()
         
         if(response.ok){
-            const updatedRecipes = state.recipes.filter(recipe => recipe._id !== json.recipe._id)
+            const updatedRecipes = recipes.filter(recipe => recipe._id !== json.recipe._id)
             dispatch({type: "DELETE_RECIPE", payload: updatedRecipes})
         }
     }
@@ -26,8 +31,8 @@ export default function RecipeDetails({recipe}){
             <p><strong>Instructions</strong></p>
            {recipe.recipeInstructions.map((instruction)=>(
                 <p>{instruction}</p>))}
-            <a href={recipe.url}>Visit the original recipe</a>
-            <button className="material-symbols-outlined" onClick={()=>handleClick(recipe._id)}>
+            {recipe.url && <a href={recipe.url}>Visit the original recipe</a>}
+            <button className="material-symbols-outlined" onClick={()=>handleDeleteClick(recipe._id)}>
                 delete
             </button>
         </div>
