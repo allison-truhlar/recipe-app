@@ -19,18 +19,23 @@ const port = process.env.PORT
 // Connect to DB
 connectDB()
 
-// Global middleware
-app.use(express.urlencoded({extended:true}))
-app.use(express.json())
+// Cookie middleware (global)
+const sessionStore = MongoStore.create({
+    mongoUrl: process.env.MONGO_URI
+})
 app.use(cookieParser())
 app.use(session({
+    name: "recipeAppSession",
+    cookie: {maxAge: 1000*60*60*24, httpOnly: true},
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({
-        mongoUrl: process.env.MONGO_URI
-    })
+    store: sessionStore
 }))
+
+// Other global middleware
+app.use(express.urlencoded({extended:false}))
+app.use(express.json())
 
 // Routes
 app.use("/api/recipes", recipeRoutes)
