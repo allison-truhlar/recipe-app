@@ -57,7 +57,31 @@ async function createUser(req, res){
 
 }
 
+//Check user
+function checkUser(req, res){
+
+    if(req.session.user){
+        res.status(200).json({username: req.session.user})
+    } 
+    if(!req.session.user){
+        return res.status(401).json({message:"unauthorized"})
+    }
+}
+
+// Logout user
+async function logoutUser(req, res){
+    try {
+        await req.session.destroy()
+    } catch(err){
+        return res.status(400).json({error: err.message})
+    }
+    res.clearCookie("recipeAppSession")
+    res.status(200).json({msg: "logged out"})
+}
+
 module.exports = {
     loginUser,
-    createUser
+    createUser,
+    checkUser,
+    logoutUser
 }
