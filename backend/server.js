@@ -42,7 +42,7 @@ app.use(cors({
     credentials: true
 }))
 app.use(function (req, res, next) {	 
-    res.setHeader('Access-Control-Allow-Origin', 'https://master--inquisitive-biscotti-9cbcc6.netlify.app/');
+    res.setHeader('Access-Control-Allow-Origin', 'https://recipe-keeper-app.netlify.app/');
     res.setHeader('Access-Control-Allow-Credentials', true);    
     next();
 });
