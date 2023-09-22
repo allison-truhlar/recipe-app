@@ -1,4 +1,5 @@
 import { useEffect, useContext } from "react"
+import { Navigate } from "react-router-dom"
 import RecipeDetails from "../components/RecipeDetails"
 import RecipeForm from "../components/RecipeForm"
 import { RecipesContext } from "../context/RecipeContext"
@@ -26,16 +27,21 @@ export default function Home() {
     }, [user])
 
     return (
-        <div className="home">
-            <div className="recipes">
-                {recipes && recipes.map((recipe)=>(
-                    <RecipeDetails 
-                        key={recipe._id}
-                        recipe={recipe}
-                    />
-                ))}
-            </div>
-            <RecipeForm/>
-        </div>
+        <>
+            {user && (
+                <div className="home">
+                    <div className="recipes">
+                        {recipes && recipes.map((recipe) => (
+                            <RecipeDetails
+                                key={recipe._id}
+                                recipe={recipe}
+                            />
+                        ))}
+                    </div>
+                    <RecipeForm />
+                </div>
+            )}
+            {!user && <Navigate to={"/login"} />}
+        </>
     )
 }
