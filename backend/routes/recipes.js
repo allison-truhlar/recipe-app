@@ -19,7 +19,7 @@ const router = express.Router()
 // require middleware
 router.use(requireAuth)
 router.use(cors({
-    origin: 'https://master--inquisitive-biscotti-9cbcc6.netlify.app/',
+    origin: 'https://recipe-keeper-app.netlify.app/',
     credentials: true
 }))
 router.use(function (req, res, next) {	 
