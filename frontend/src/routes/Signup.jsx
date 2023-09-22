@@ -1,5 +1,5 @@
 import { useState, useContext } from "react"
-import { Navigate } from "react-router-dom"
+import { Navigate, Link } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 
 export default function Signup(){
@@ -62,6 +62,9 @@ export default function Signup(){
 
                     <button disabled={isLoading}>Sign up</button>
                     {error && <div className="error">{error}</div>}
+                    {error === "Username already taken" && (
+                        <div>Already have an account? <Link to="/login">Login here!</Link></div>
+                    )}
                 </form>
             )}
             {user && <Navigate to="/" />}
