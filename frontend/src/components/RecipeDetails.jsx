@@ -13,6 +13,7 @@ export default function RecipeDetails({recipe}){
         
         const response = await fetch(`https://recipe-keeper-ixnb.onrender.com/api/recipes/${id}`, {
             method: "DELETE",
+            credentials: "include"
         })
         const json = await response.json()
         
