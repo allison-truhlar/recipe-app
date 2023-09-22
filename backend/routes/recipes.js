@@ -1,4 +1,5 @@
 const express = require("express")
+const cors = require("cors")
 
 //import controllers
 const {
@@ -17,6 +18,13 @@ const router = express.Router()
 
 // require middleware
 router.use(requireAuth)
+router.use(cors({
+    credentials: true
+}))
+app.use(function (req, res, next) {	 
+    res.setHeader('Access-Control-Allow-Credentials', true);    
+    next();
+});
 
 // GET all recipes
 router.get("/", getRecipes)

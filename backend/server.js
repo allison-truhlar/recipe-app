@@ -37,9 +37,6 @@ app.use(session({
 // Other global middleware
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
-app.use(cors({
-    credentials: true
-}))
 
 // Routes
 app.use("/api/recipes", recipeRoutes)
