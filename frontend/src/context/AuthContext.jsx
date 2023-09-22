@@ -29,7 +29,7 @@ export function AuthContextProvider(props){
 
             if (response.ok) {
                 console.log(json)
-                dispatch({ type: 'LOGIN', payload: json }) 
+                dispatch({ type: 'LOGIN', payload: json.username }) 
             }
         }
         checkAuth()
