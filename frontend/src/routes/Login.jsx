@@ -1,22 +1,23 @@
 import { useState, useContext } from "react"
+import { Navigate } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 
-export default function Login(){
-    const {dispatch} = useContext(AuthContext)
+export default function Login() {
+    const { user, dispatch } = useContext(AuthContext)
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [error, setError]=useState(null)
+    const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
 
-    async function handleSubmit(e){
+    async function handleSubmit(e) {
         e.preventDefault()
         setIsLoading(true)
         setError(null)
 
         const response = await fetch("/api/user/login", {
             method: "POST",
-            body: JSON.stringify({username, password}),
+            body: JSON.stringify({ username, password }),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -24,16 +25,13 @@ export default function Login(){
         const json = await response.json()
         console.log(json)
 
-        if(!response.ok){
+        if (!response.ok) {
             setError(json.error)
             setIsLoading(false)
         }
-        if(response.ok){
-            //save user to local storage
-            // localStorage.setItem("user", JSON.stringify(json))
-
+        if (response.ok) {
             //update auth context
-            dispatch({type: "LOGIN", payload: json})
+            dispatch({ type: "LOGIN", payload: json })
 
             //update local state
             setUsername("")
@@ -44,27 +42,31 @@ export default function Login(){
 
     }
 
-    return(
-        <form className="login" onSubmit={handleSubmit}>
-            <h3>Login</h3>
+    return (
+        <>
+            {!user && (
+                <form className="login" onSubmit={handleSubmit}>
+                    <h3>Login</h3>
 
-            <label>Username:</label>
-            <input
-                type= "text"
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
-            />
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        onChange={(e) => setUsername(e.target.value)}
+                        value={username}
+                    />
 
-            <label>Password:</label>
-            <input
-                type= "password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-            />
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                    />
 
-            <button disabled={isLoading}>Login</button>
-            {error && <div className="error">{error}</div>}
-        </form>
+                    <button disabled={isLoading}>Login</button>
+                    {error && <div className="error">{error}</div>}
+                </form>
+            )}
+            {user && <Navigate to="/" />}
+        </>
     )
-
 }
