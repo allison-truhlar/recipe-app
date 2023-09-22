@@ -14,7 +14,7 @@ export default function Signup(){
         e.preventDefault()
         setIsLoading(true)
 
-        const response = await fetch("/api/user/signup", {
+        const response = await fetch("https://recipe-keeper-ixnb.onrender.com/api/user/signup", {
             method: "POST",
             body: JSON.stringify({username, password}),
             headers: {

@@ -15,7 +15,7 @@ export default function Login() {
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch("/api/user/login", {
+        const response = await fetch("https://recipe-keeper-ixnb.onrender.com/api/user/login", {
             method: "POST",
             body: JSON.stringify({ username, password }),
             headers: {

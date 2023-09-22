@@ -40,7 +40,7 @@ export default function RecipeForm() {
             recipeInstructions: parseTextArea(recipeInstructions)
         }
 
-        const response = await fetch("/api/recipes", {
+        const response = await fetch("https://recipe-keeper-ixnb.onrender.com/api/recipes", {
             method: "POST",
             body: JSON.stringify(recipe),
             headers: {

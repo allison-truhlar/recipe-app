@@ -12,7 +12,7 @@ export default function Home() {
     useEffect(()=>{
         
         async function fetchRecipes() {
-            const response = await fetch("/api/recipes")
+            const response = await fetch("https://recipe-keeper-ixnb.onrender.com/api/recipes")
             const json = await response.json()
 
             if(response.ok){

@@ -8,7 +8,7 @@ export default function Navbar(){
     async function handleLogoutClick(e){
         e.preventDefault()
 
-        const response = await fetch("/api/user/logout")
+        const response = await fetch("https://recipe-keeper-ixnb.onrender.com/api/user/logout")
 
         const json = await response.json()
         console.log(json)
