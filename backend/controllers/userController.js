@@ -13,48 +13,44 @@ async function loginUser(req, res){
     // Check login credentials
     try{
         const user = await User.login(username, password)
+
+        // Session data
+        req.session.user = {
+        username,
+        isLoggedIn: true
+        }
+        
+        // Save session 
+        await req.session.save()
+
+        res.status(200).json({ username })
     } catch(error) {
         res.status(400).json({error: error.message})
     }
-
-    // Session data
-    req.session.user = {
-        username,
-        isLoggedIn: true
-    }
-    // Save session
-    try {
-        await req.session.save()
-    } catch (err) {
-        res.status(400).json({ error: err.message })
-    }
-    res.status(200).json({ username })
+    
 }
 
 //sign up user
 async function createUser(req, res){
     const {username, password} = req.body
     
-    // Try to create a user
+    /// Try to sign up user
     try{
         const user = await User.signup(username, password)
+
+        // Session data
+        req.session.user = {
+        username,
+        isLoggedIn: true
+        }
+        
+        // Save session 
+        await req.session.save()
+
+        res.status(200).json({ username })
     } catch(error) {
         res.status(400).json({error: error.message})
-    }
-
-    // Session data
-    req.session.user = {
-            username,
-            isLoggedIn: true
-    }
-    // Save session
-    try {
-        await req.session.save()
-    } catch(err){
-        res.status(400).json({error: err.message})
-    }
-    res.status(200).json({username})
-
+    }  
 }
 
 //Check user
