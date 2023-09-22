@@ -37,6 +37,15 @@ app.use(session({
 // Other global middleware
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
+app.use(cors({
+    origin: 'https://recipe-keeper-app.netlify.app/',
+    credentials: true
+}))
+app.use(function (req, res, next) {	 
+    res.setHeader('Access-Control-Allow-Origin', 'https://master--inquisitive-biscotti-9cbcc6.netlify.app/');
+    res.setHeader('Access-Control-Allow-Credentials', true);    
+    next();
+});
 
 // Routes
 app.use("/api/recipes", recipeRoutes)
