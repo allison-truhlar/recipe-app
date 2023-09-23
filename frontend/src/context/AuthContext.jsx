@@ -24,7 +24,7 @@ export function AuthContextProvider(props){
     
     useEffect(() => {
         async function checkAuth(){
-            const response = await fetch("https://recipe-keeper-ixnb.onrender.com/api/user/checkAuth")
+            const response = await fetch("https://recipe-keeper-ixnb.onrender.com/api/user/checkAuth", {credentials: "include"})
             const json = await response.json()
 
             if (response.ok) {
