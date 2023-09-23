@@ -38,11 +38,13 @@ app.use(session({
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 app.use(cors({
-    origin: 'https://recipe-keeper-ixnb.onrender.com',
-    credentials: true
+    origin: 'https://recipe-keeper-app.netlify.app',
+    methods: ['POST', 'GET', 'DELETE', 'PATCH'],
+    credentials: true,
+    exposedHeaders: ["set-cookie"]
 }))
 app.use(function (req, res, next) {	 
-    res.setHeader('Access-Control-Allow-Origin', 'https://recipe-keeper-ixnb.onrender.com');
+    res.setHeader('Access-Control-Allow-Origin', 'https://recipe-keeper-app.netlify.app');
     res.setHeader('Access-Control-Allow-Credentials', true);    
     next();
 });
