@@ -5,7 +5,7 @@ const cors = require("cors")
 const connectDB = require("./config/db")
 
 // Requirements for session tracking
-const cookieParser = require("cookie-parser")
+// const cookieParser = require("cookie-parser")
 const session = require("express-session")
 const MongoStore = require("connect-mongo")
 
@@ -24,15 +24,17 @@ connectDB()
 const sessionStore = MongoStore.create({
     mongoUrl: process.env.MONGO_URI
 })
-app.use(cookieParser())
+// app.use(cookieParser())
 app.use(session({
     name: "recipeAppSession",
     cookie: {maxAge: 1000*60*60*24, httpOnly: true},
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: sessionStore
+    store: sessionStore,
+    secure: true
 }))
+app.set('trust proxy', 1) // trust first proxy
 
 // Other global middleware
 app.use(express.urlencoded({extended:false}))
