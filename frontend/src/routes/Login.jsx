@@ -15,6 +15,11 @@ export default function Login() {
         setIsLoading(true)
         setError(null)
 
+
+        if(!username || !password){
+            setError("All fields must be filled")
+        }
+
         const response = await fetch("https://recipe-keeper-ixnb.onrender.com/api/user/login", {
             method: "POST",
             body: JSON.stringify({ username, password }),

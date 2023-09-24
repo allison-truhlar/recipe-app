@@ -41,27 +41,14 @@ userSchema.statics.signup = async function(username, password){
     return user
 }
 
-//static login method
-userSchema.statics.login = async function(username, password){
-    
-    if(!username || !password){
-        throw Error("All fields must be filled")
-    }
-    
-    const user = await this.findOne({username})
-
-    if(!user){
-        throw Error("Incorrect username")
-    }
-    
-    const match = await bcrypt.compare(password, user.password)
-
-    if (!match){
-        throw Error("Incorrect password")
-    }
-
-    return user
-    
-}
+// compare password static helper method
+userSchema.methods.comparePassword = function comparePassword(
+    candidatePassword,
+    callback
+  ) {
+    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+      callback(err, isMatch)
+    })
+  }
 
 module.exports = mongoose.model("User", userSchema)

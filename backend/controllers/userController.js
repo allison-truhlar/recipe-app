@@ -1,78 +1,86 @@
 const User = require("../models/userModel")
-const jwt = require("jsonwebtoken")
-const mongoose = require("mongoose")
+const passport = require("passport");
+// const jwt = require("jsonwebtoken")
+// const mongoose = require("mongoose")
 
-function createToken(_id){
-    return jwt.sign({_id}, process.env.SECRET)
-}
+// function createToken(_id){
+//     return jwt.sign({_id}, process.env.SECRET)
+// }
 
 //login user
-async function loginUser(req, res){
-    const {username, password} = req.body
+async function loginUser(req, res) {
+    const { username, password } = req.body
 
-    // Check login credentials
-    try{
-        const user = await User.login(username, password)
-
-        // Session data
-        req.session.user = {
-        username,
-        isLoggedIn: true
-        }
-        
-        // Save session 
-        await req.session.save()
-
-        res.status(200).json({ username })
-    } catch(error) {
-        res.status(400).json({error: error.message})
+    if (!username || !password) {
+        res.status(400).json({ error: "All fields must be filled" })
     }
-    
+
+    passport.authenticate("local", (err, user) => {
+        if (err) {
+            res.status(400).json({ error: err.message })
+        }
+        if (!user) {
+            res.status(400).json({ error: "Username does not exist" })
+        }
+        req.logIn(user, (err) => {
+            if (err) {
+                res.status(400).json({ error: err.message })
+            }
+            res.status(200).json({ username: user.username })
+        });
+    })(req, res);
+
 }
 
 //sign up user
-async function createUser(req, res){
-    const {username, password} = req.body
-    
+async function createUser(req, res) {
+    const { username, password } = req.body
+
     /// Try to sign up user
-    try{
+    try {
         const user = await User.signup(username, password)
 
-        // Session data
-        req.session.user = {
-        username,
-        isLoggedIn: true
-        }
-        
-        // Save session 
-        await req.session.save()
+        req.logIn(user, (err) => {
+            if (err) {
+                res.status(400).json({ error: err.message })
+            }
+            res.status(200).json({ username: user.username })
+        });
 
-        res.status(200).json({ username })
-    } catch(error) {
-        res.status(400).json({error: error.message})
-    }  
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
 }
 
 //Check user
-function checkUser(req, res){
-
-    if(req.session.user){
-        res.status(200).json({username: req.session.user})
-    } 
-    if(!req.session.user){
-        return res.status(401).json({message:"unauthorized"})
-    }
+function checkUser(req, res) {
+    passport.authenticate("local", (err, user) => {
+        if (err) {
+            res.status(400).json({ error: err.message })
+        }
+        if (!user) {
+            res.status(400).json({ error: "Unauthorized" })
+        }
+        req.logIn(user, (err) => {
+            if (err) {
+                res.status(400).json({ error: err.message })
+            }
+            res.status(200).json({ username: user.username })
+        });
+    })(req, res);
 }
 
 // Logout user
-async function logoutUser(req, res){
-    try {
-        await req.session.destroy()
-    } catch(err){
-        return res.status(400).json({error: err.message})
-    }
-    res.clearCookie("recipeAppSession")
-    res.status(200).json({msg: "logged out"})
+async function logoutUser(req, res) {
+    req.logout(() => {
+        res.status(200).json({ msg: "logged out" })
+    })
+    req.session.destroy((err) => {
+        if (err)
+            res.status(400).json({ error: err.message })
+        req.user = null;
+        res.redirect("/");
+    });
 }
 
 module.exports = {
