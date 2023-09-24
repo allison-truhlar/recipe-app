@@ -42,10 +42,7 @@ userSchema.statics.signup = async function(username, password){
 }
 
 // compare password static helper method
-userSchema.methods.comparePassword = function comparePassword(
-    candidatePassword,
-    callback
-  ) {
+userSchema.methods.comparePassword = function comparePassword(candidatePassword, callback) {
     bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
       callback(err, isMatch)
     })
