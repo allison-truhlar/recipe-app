@@ -36,8 +36,8 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: sessionStore
-    // secure: true
+    store: sessionStore,
+    secure: true
 }))
 
 // Passport middleware
@@ -50,8 +50,7 @@ app.use(passport.session());
 // app.use(cors({
 //     origin: 'https://recipe-keeper-app.netlify.app',
 //     methods: ['POST', 'GET', 'DELETE', 'PATCH'],
-//     credentials: true,
-//     exposedHeaders: ["set-cookie"]
+//     credentials: true
 // }))
 // app.use(function (req, res, next) {	 
 //     res.setHeader('Access-Control-Allow-Origin', 'https://recipe-keeper-app.netlify.app');
