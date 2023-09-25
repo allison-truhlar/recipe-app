@@ -18,7 +18,9 @@ router.post("/login", loginUser)
 router.post("/signup", createUser)
 
 // Check authentication
-router.get("/checkAuth", requireAuth, checkAuth)
+router.get("/checkAuth", requireAuth, (req, res) => {
+    res.status(200).json({username: req.user.username})
+})
 
 // Logout route
 router.get("/logout", logoutUser)
