@@ -18,13 +18,16 @@ export const authReducer = (state, action) => {
 }
 
 export function AuthContextProvider(props){
+    // const server = ""
+    // // "https://recipe-keeper-ixnb.onrender.com"
+
     const [state, dispatch] = useReducer(authReducer, {
         user: null
     })
     
     useEffect(() => {
         async function checkAuth(){
-            const response = await fetch("https://recipe-keeper-ixnb.onrender.com/api/user/checkAuth", {credentials: "same-origin"})
+            const response = await fetch("/api/user/checkAuth")
             const json = await response.json()
 
             if (response.ok) {

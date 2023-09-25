@@ -6,15 +6,16 @@ import { RecipesContext } from "../context/RecipeContext"
 import { AuthContext } from "../context/AuthContext"
 
 export default function Home() {
+    // const server = ""
+    // // "https://recipe-keeper-ixnb.onrender.com"
+
     const {recipes, dispatch} = useContext(RecipesContext)
     const {user} = useContext(AuthContext)
 
     useEffect(()=>{
         
         async function fetchRecipes() {
-            const response = await fetch("https://recipe-keeper-ixnb.onrender.com/api/recipes",{
-                credentials: "same-origin"
-            })
+            const response = await fetch("/api/recipes")
             const json = await response.json()
 
             if(response.ok){

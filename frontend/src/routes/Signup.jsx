@@ -3,6 +3,9 @@ import { Navigate, Link } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 
 export default function Signup(){
+    // const server = ""
+    // // "https://recipe-keeper-ixnb.onrender.com"
+  
     const {user, dispatch} = useContext(AuthContext)
 
     const [username, setUsername] = useState("")
@@ -14,7 +17,7 @@ export default function Signup(){
         e.preventDefault()
         setIsLoading(true)
 
-        const response = await fetch("https://recipe-keeper-ixnb.onrender.com/api/user/signup", {
+        const response = await fetch("/api/user/signup", {
             method: "POST",
             body: JSON.stringify({username, password}),
             headers: {
