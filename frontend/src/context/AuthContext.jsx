@@ -18,9 +18,6 @@ export const authReducer = (state, action) => {
 }
 
 export function AuthContextProvider(props){
-    // const server = ""
-    // // "https://recipe-keeper-ixnb.onrender.com"
-
     const [state, dispatch] = useReducer(authReducer, {
         user: null
     })
