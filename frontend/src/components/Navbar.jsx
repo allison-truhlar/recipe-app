@@ -1,14 +1,14 @@
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
-import { RecipeContext } from "../context/RecipeContext"
+import { RecipesContext } from "../context/RecipeContext"
 
 export default function Navbar(){
     // const server = ""
     // // "https://recipe-keeper-ixnb.onrender.com"
 
     const {user, dispatch} = useContext(AuthContext)
-    const { dispatch: recipeDispatch } = useContext(RecipeContext)
+    const { dispatch: recipeDispatch } = useContext(RecipesContext)
 
     async function handleLogoutClick(e){
         e.preventDefault()
