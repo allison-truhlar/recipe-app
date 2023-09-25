@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 
 //function to get all recipes
 const getRecipes = async(req, res) =>{
-    const recipes = await Recipe.find({}).sort({name: 1})
+    const recipes = await Recipe.find({user_id: req.user._id}).sort({updatedAt: 1})
     res.status(200).json(recipes)
 }
 
