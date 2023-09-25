@@ -59,8 +59,8 @@ app.use(passport.session());
 // });
 
 // Routes
-app.use("https://recipe-keeper-ixnb.onrender.com/api/recipes", recipeRoutes)
-app.use("https://recipe-keeper-ixnb.onrender.com/api/user", userRoutes)
+app.use("/api/recipes", recipeRoutes)
+app.use("/api/user", userRoutes)
 
 // Server running
 app.listen(port, () => {
