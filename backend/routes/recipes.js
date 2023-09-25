@@ -11,13 +11,13 @@ const {
 } = require("../controllers/recipeController")
 
 //import middleware
-const {requireAuth} = require("../middleware/requireAuth")
+const requireAuth = require("../middleware/requireAuth")
 
 // create router instance
 const router = express.Router()
 
 // require middleware
-router.use(requireAuth())
+router.use(requireAuth)
 
 
 // GET all recipes

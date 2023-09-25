@@ -7,7 +7,7 @@ const {
     logoutUser
 } = require("../controllers/userController")
 
-const {requireAuth} = require("../middleware/requireAuth")
+const requireAuth = require("../middleware/requireAuth")
 
 const router = express.Router()
 
@@ -18,7 +18,7 @@ router.post("/login", loginUser)
 router.post("/signup", createUser)
 
 // Check authentication
-router.get("/checkAuth", requireAuth(), checkAuth)
+router.get("/checkAuth", requireAuth, checkAuth)
 
 // Logout route
 router.get("/logout", logoutUser)
