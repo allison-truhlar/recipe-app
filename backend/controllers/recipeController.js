@@ -44,7 +44,8 @@ const createRecipe = async(req, res) => {
 
     //add document to db
     try{
-        const recipe = await Recipe.create({url, name, recipeIngredient, recipeInstructions})
+        const user_id = req.user._id
+        const recipe = await Recipe.create({url, name, recipeIngredient, recipeInstructions, user_id})
         res.status(200).json(recipe)
     } catch(error){
         res.status(400).json({error: error.message})
