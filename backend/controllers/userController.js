@@ -55,7 +55,7 @@ async function createUser(req, res) {
 //Check user
 async function checkAuth(req, res) {
     if (req.user){
-        return res.status(200).json({ username: user.username });
+        return res.status(200).json({ username: req.user.username });
     }
     else {
       return res.status(500).json({ error: "unauthorized" });
