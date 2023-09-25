@@ -53,22 +53,12 @@ async function createUser(req, res) {
 }
 
 //Check user
-async function checkUser(req, res) {
-    try {
-      passport.authenticate("local", async (err, user) => {
-        if (err) {
-          return res.status(400).json({ error: err.message });
-        }
-        if (!user) {
-          return res.status(400).json({ error: "Unauthorized" });
-        }
-  
-        await req.logIn(user);
-  
+async function checkAuth(req, res) {
+    if (req.user){
         return res.status(200).json({ username: user.username });
-      })(req, res);
-    } catch (error) {
-      return res.status(500).json({ error: "Internal Server Error" });
+    }
+    else {
+      return res.status(500).json({ error: "unauthorized" });
     }
   }
 
@@ -90,6 +80,6 @@ async function logoutUser(req, res) {
 module.exports = {
     loginUser,
     createUser,
-    checkUser,
+    checkAuth,
     logoutUser
 }

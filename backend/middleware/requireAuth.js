@@ -1,6 +1,3 @@
-// const jwt = require("jsonwebtoken")
-// const User = require("../models/userModel")
-
 function requireAuth(req, res, next){
 
     if(req.isAuthenticated()){
