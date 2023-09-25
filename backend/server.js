@@ -61,6 +61,8 @@ app.use(passport.session());
 // Routes
 app.use("/api/recipes", recipeRoutes)
 app.use("/api/user", userRoutes)
+app.get('/', (req, res) => res.send('Hello from Express!'))
+
 
 // Server running
 app.listen(port, () => {
