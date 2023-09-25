@@ -36,8 +36,8 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: sessionStore,
-    secure: true
+    store: sessionStore
+    // secure: true
 }))
 
 // Passport middleware

@@ -24,7 +24,7 @@ userSchema.statics.signup = async function(username, password){
         throw Error("All fields must be filled")
     }
     if(!validator.isStrongPassword(password)){
-        throw Error("Password must contain at least one uppercase and lowercase letter, a number, and a symbol")
+        throw Error("Password must be at least 8 characters long and must contain at least one uppercase and lowercase letter, a number, and a symbol")
     }
     
     const exists = await this.findOne({username})

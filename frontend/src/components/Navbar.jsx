@@ -3,12 +3,15 @@ import { Link } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 
 export default function Navbar(){
+    // const server = ""
+    // // "https://recipe-keeper-ixnb.onrender.com"
+
     const {user, dispatch} = useContext(AuthContext)
 
     async function handleLogoutClick(e){
         e.preventDefault()
 
-        const response = await fetch("https://recipe-keeper-ixnb.onrender.com/api/user/logout")
+        const response = await fetch("/api/user/logout")
 
         const json = await response.json()
         console.log(json)

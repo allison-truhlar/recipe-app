@@ -12,21 +12,21 @@ async function loginUser(req, res) {
     const { username, password } = req.body
 
     if (!username || !password) {
-        res.status(400).json({ error: "All fields must be filled" })
+        return res.status(400).json({ error: "All fields must be filled" })
     }
 
     passport.authenticate("local", (err, user) => {
         if (err) {
-            res.status(400).json({ error: err.message })
+            return res.status(400).json({ error: err.message })
         }
         if (!user) {
-            res.status(400).json({ error: "Username does not exist" })
+            return res.status(400).json({ error: "Username does not exist" })
         }
         req.logIn(user, (err) => {
             if (err) {
-                res.status(400).json({ error: err.message })
+               return res.status(400).json({ error: err.message })
             }
-            res.status(200).json({ username: user.username })
+            return res.status(200).json({ username: user.username })
         });
     })(req, res);
 
@@ -42,9 +42,9 @@ async function createUser(req, res) {
 
         req.logIn(user, (err) => {
             if (err) {
-                res.status(400).json({ error: err.message })
+                return res.status(400).json({ error: err.message })
             }
-            res.status(200).json({ username: user.username })
+            return res.status(200).json({ username: user.username })
         });
 
     } catch (error) {
@@ -53,33 +53,37 @@ async function createUser(req, res) {
 }
 
 //Check user
-function checkUser(req, res) {
-    passport.authenticate("local", (err, user) => {
+async function checkUser(req, res) {
+    try {
+      passport.authenticate("local", async (err, user) => {
         if (err) {
-            res.status(400).json({ error: err.message })
+          return res.status(400).json({ error: err.message });
         }
         if (!user) {
-            res.status(400).json({ error: "Unauthorized" })
+          return res.status(400).json({ error: "Unauthorized" });
         }
-        req.logIn(user, (err) => {
-            if (err) {
-                res.status(400).json({ error: err.message })
-            }
-            res.status(200).json({ username: user.username })
-        });
-    })(req, res);
-}
+  
+        await req.logIn(user);
+  
+        return res.status(200).json({ username: user.username });
+      })(req, res);
+    } catch (error) {
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
 
 // Logout user
 async function logoutUser(req, res) {
-    req.logout(() => {
-        res.status(200).json({ msg: "logged out" })
-    })
+    // req.logout(() => {
+    //     res.status(200).json({ msg: "logged out" })
+    // })
+    // console.log(req.user)
     req.session.destroy((err) => {
-        if (err)
-            res.status(400).json({ error: err.message })
-        req.user = null;
-        res.redirect("/");
+        res.clearCookie("recipeAppSession")
+        if (err){
+            return res.status(400).json({ error: err.message })
+        }
+        return res.status(200).json({msg: "session destroyed"})
     });
 }
 
