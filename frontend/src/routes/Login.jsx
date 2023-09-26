@@ -69,9 +69,7 @@ export default function Login() {
 
                     <button disabled={isLoading}>Login</button>
                     {error && <div className="error">{error}</div>}
-                    {error === "Incorrect username" && (
-                        <div>Don't have an account? <Link to="/signup">Sign up here!</Link></div>
-                    )}
+                    <div>Don't have an account? <Link to="/signup">Sign up!</Link></div>
                 </form>
             )}
             {user && <Navigate to="/" />}

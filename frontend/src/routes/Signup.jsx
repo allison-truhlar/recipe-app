@@ -65,9 +65,7 @@ export default function Signup(){
 
                     <button disabled={isLoading}>Sign up</button>
                     {error && <div className="error">{error}</div>}
-                    {error === "Username already taken" && (
-                        <div>Already have an account? <Link to="/login">Login here!</Link></div>
-                    )}
+                    <div>Have an account? <Link to="/login">Login!</Link></div>
                 </form>
             )}
             {user && <Navigate to="/" />}
