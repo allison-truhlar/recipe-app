@@ -3,24 +3,8 @@ const mongoose = require("mongoose")
 
 //function to get all recipes
 const getRecipes = async(req, res) =>{
-    const recipes = await Recipe.find({user_id: req.user._id}).sort({updatedAt: 1})
+    const recipes = await Recipe.find({user_id: req.user._id}).sort({updatedAt: -1})
     res.status(200).json(recipes)
-}
-
-//function to get a single recipe
-const getRecipe = async(req,res) =>{
-    const {id} = req.params
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: "Recipe not found"})
-    }
-
-    const recipe = await Recipe.findById(id)
-
-    if(!recipe){
-        return res.status(404).json({error: "Recipe not found"})
-    }
-
-    res.status(200).json(recipe)
 }
 
 //function to create a new recipe
@@ -68,27 +52,46 @@ const deleteRecipe = async(req, res) => {
     res.status(200).json({recipe})
 }
 
-//function to update a recipe
-const updateRecipe = async(req, res) => {
-    const {id} = req.params
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: "Recipe not found"})
-    }
-
-    const recipe = await Recipe.findOneAndUpdate({_id: id}, {
-        ...req.body
-    })
-    if(!recipe){
-        return res.status(404).json({error: "Recipe not found"})
-    }
-    res.status(200).json({recipe})
-
-}
-
 module.exports = {
     getRecipes,
-    getRecipe,
     createRecipe,
-    deleteRecipe,
-    updateRecipe
+    deleteRecipe
 }
+
+
+
+
+
+
+// //function to get a single recipe
+// const getRecipe = async(req,res) =>{
+//     const {id} = req.params
+//     if(!mongoose.Types.ObjectId.isValid(id)){
+//         return res.status(404).json({error: "Recipe not found"})
+//     }
+
+//     const recipe = await Recipe.findById(id)
+
+//     if(!recipe){
+//         return res.status(404).json({error: "Recipe not found"})
+//     }
+
+//     res.status(200).json(recipe)
+// }
+
+// //function to update a recipe
+// const updateRecipe = async(req, res) => {
+//     const {id} = req.params
+//     if(!mongoose.Types.ObjectId.isValid(id)){
+//         return res.status(404).json({error: "Recipe not found"})
+//     }
+
+//     const recipe = await Recipe.findOneAndUpdate({_id: id}, {
+//         ...req.body
+//     })
+//     if(!recipe){
+//         return res.status(404).json({error: "Recipe not found"})
+//     }
+//     res.status(200).json({recipe})
+
+// }

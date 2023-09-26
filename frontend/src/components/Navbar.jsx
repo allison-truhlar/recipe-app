@@ -4,10 +4,7 @@ import { AuthContext } from "../context/AuthContext"
 import { RecipesContext } from "../context/RecipeContext"
 
 export default function Navbar(){
-    // const server = ""
-    // // "https://recipe-keeper-ixnb.onrender.com"
-
-    const {user, dispatch} = useContext(AuthContext)
+    const {user, dispatch: userDispatch} = useContext(AuthContext)
     const { dispatch: recipeDispatch } = useContext(RecipesContext)
 
     async function handleLogoutClick(e){
@@ -23,12 +20,11 @@ export default function Navbar(){
         }
         if(response.ok){
             //update AuthContext state
-            dispatch({type:"LOGOUT"})
+            userDispatch({type:"LOGOUT"})
             //clear recipe state
             recipeDispatch({type:"SET_RECIPES", payload:null})
             
         }
-
     }
 
     return(

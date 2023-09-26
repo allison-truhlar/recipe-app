@@ -28,7 +28,6 @@ export function AuthContextProvider(props){
             const json = await response.json()
 
             if (response.ok) {
-                console.log(json)
                 dispatch({ type: 'LOGIN', payload: json}) 
             }
         }

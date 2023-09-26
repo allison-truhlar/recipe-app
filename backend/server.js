@@ -1,7 +1,6 @@
 require("dotenv").config()
 
 const express = require("express")
-// const cors = require("cors")
 const connectDB = require("./config/db")
 
 // Requirements for authentication
@@ -44,6 +43,28 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Routes
+app.use("/api/recipes", recipeRoutes)
+app.use("/api/user", userRoutes)
+app.get('/', (req, res) => res.send('Hello from the deployed server!'))
+
+
+// Server running
+app.listen(port, () => {
+    console.log(`app listening on port ${process.env.PORT}`)
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 // // Other global middleware
 
@@ -57,14 +78,3 @@ app.use(passport.session());
 //     res.setHeader('Access-Control-Allow-Credentials', true);    
 //     next();
 // });
-
-// Routes
-app.use("/api/recipes", recipeRoutes)
-app.use("/api/user", userRoutes)
-app.get('/', (req, res) => res.send('Hello from Express!'))
-
-
-// Server running
-app.listen(port, () => {
-    console.log(`app listening on port ${process.env.PORT}`)
-})

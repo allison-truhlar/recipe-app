@@ -8,7 +8,7 @@ module.exports = function (passport) {
         const user = await User.findOne({ username });
 
         if (!user) {
-          return done(null, false, { msg: `Username ${username} not found.` });
+          return done(null, false);
         }
 
         user.comparePassword(password, async (err, isMatch) => {
@@ -18,7 +18,7 @@ module.exports = function (passport) {
           if (isMatch) {
             return done(null, user);
           }
-          return done(null, false, { msg: "Invalid email or password." });
+          return done(null, false);
         });
       } catch (err) {
         return done(err);

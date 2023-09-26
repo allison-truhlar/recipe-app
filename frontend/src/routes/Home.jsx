@@ -6,10 +6,7 @@ import { RecipesContext } from "../context/RecipeContext"
 import { AuthContext } from "../context/AuthContext"
 
 export default function Home() {
-    // const server = ""
-    // // "https://recipe-keeper-ixnb.onrender.com"
-
-    const {recipes, dispatch} = useContext(RecipesContext)
+    const {recipes, dispatch: recipeDispatch} = useContext(RecipesContext)
     const {user} = useContext(AuthContext)
 
     useEffect(()=>{
@@ -19,7 +16,7 @@ export default function Home() {
             const json = await response.json()
 
             if(response.ok){
-                dispatch({type:"SET_RECIPES", payload: json})
+                recipeDispatch({type:"SET_RECIPES", payload: json})
             }
         }
 

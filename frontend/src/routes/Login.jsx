@@ -15,7 +15,6 @@ export default function Login() {
         setIsLoading(true)
         setError(null)
 
-
         if(!username || !password){
             setError("All fields must be filled")
         }
@@ -28,7 +27,6 @@ export default function Login() {
             }
         })
         const json = await response.json()
-        console.log(json)
 
         if (!response.ok) {
             setError(json.error)

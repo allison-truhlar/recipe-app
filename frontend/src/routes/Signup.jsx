@@ -2,10 +2,7 @@ import { useState, useContext } from "react"
 import { Navigate, Link } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 
-export default function Signup(){
-    // const server = ""
-    // // "https://recipe-keeper-ixnb.onrender.com"
-  
+export default function Signup(){  
     const {user, dispatch} = useContext(AuthContext)
 
     const [username, setUsername] = useState("")

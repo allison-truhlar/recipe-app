@@ -3,9 +3,6 @@ import { RecipesContext } from "../context/RecipeContext"
 import { AuthContext } from "../context/AuthContext"
 
 export default function RecipeDetails({recipe}){
-    const server = ""
-    // "https://recipe-keeper-ixnb.onrender.com"
-    
     const {recipes, dispatch} = useContext(RecipesContext)
     const {user} = useContext(AuthContext)
 
@@ -14,7 +11,7 @@ export default function RecipeDetails({recipe}){
             return
         }
         
-        const response = await fetch(`${server}/api/recipes/${id}`, {
+        const response = await fetch("/api/recipes/${id}", {
             method: "DELETE"
         })
         const json = await response.json()

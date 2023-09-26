@@ -1,11 +1,5 @@
 const User = require("../models/userModel")
 const passport = require("passport");
-// const jwt = require("jsonwebtoken")
-// const mongoose = require("mongoose")
-
-// function createToken(_id){
-//     return jwt.sign({_id}, process.env.SECRET)
-// }
 
 //login user
 async function loginUser(req, res) {
@@ -15,13 +9,14 @@ async function loginUser(req, res) {
         return res.status(400).json({ error: "All fields must be filled" })
     }
 
-    passport.authenticate("local", (err, user) => {
+    passport.authenticate("local", (err, user, msg) => {
         if (err) {
-            return res.status(400).json({ error: err.message })
+            return res.status(400).json({error: err})
         }
         if (!user) {
-            return res.status(400).json({ error: "Username does not exist" })
+            return res.status(400).json({ error: `Invalid credentials`})
         }
+
         req.logIn(user, (err) => {
             if (err) {
                return res.status(400).json({ error: err.message })
@@ -52,22 +47,8 @@ async function createUser(req, res) {
     }
 }
 
-//Check user
-async function checkAuth(req, res) {
-    if (req.user){
-        return res.status(200).json({ username: req.user.username });
-    }
-    else {
-      return res.status(500).json({ error: "unauthorized" });
-    }
-  }
-
 // Logout user
 async function logoutUser(req, res) {
-    // req.logout(() => {
-    //     res.status(200).json({ msg: "logged out" })
-    // })
-    // console.log(req.user)
     req.session.destroy((err) => {
         res.clearCookie("recipeAppSession")
         if (err){
@@ -80,6 +61,19 @@ async function logoutUser(req, res) {
 module.exports = {
     loginUser,
     createUser,
-    checkAuth,
     logoutUser
 }
+
+
+
+
+
+// //Check user
+// async function checkAuth(req, res) {
+//     if (req.user){
+//         return res.status(200).json({ username: req.user.username });
+//     }
+//     else {
+//       return res.status(500).json({ error: "unauthorized" });
+//     }
+//   }
