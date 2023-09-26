@@ -69,7 +69,7 @@ export default function Login() {
 
                     <button disabled={isLoading}>Login</button>
                     {error && <div className="error">{error}</div>}
-                    <div>Don't have an account? <Link to="/signup">Sign up!</Link></div>
+                    <div className="redirect-link">Don't have an account? <Link to="/signup">Sign up!</Link></div>
                 </form>
             )}
             {user && <Navigate to="/" />}

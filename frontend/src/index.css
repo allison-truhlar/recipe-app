@@ -113,7 +113,7 @@ div.error {
   border: 1px solid var(--error);
   color: var(--error);
   border-radius: 4px;
-  margin: 20px 0;
+  margin-top: 20px;
 }
 
 input.error, textarea.error {
@@ -146,4 +146,8 @@ form.signup, form.login {
   padding: 20px;
   background: #fff;
   border-radius: 4px;
+}
+
+.redirect-link{
+  margin-top: 20px;
 }
