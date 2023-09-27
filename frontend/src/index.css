@@ -36,7 +36,8 @@ header a {
   gap: 50px;
 }
 
-/* Recipe card */
+/* Cards for forms and recipes */
+form,
 .recipe-details {
   background: #fff;
   border-radius: 4px;
@@ -44,6 +45,11 @@ header a {
   padding: 20px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Recipe card */
+.recipe-details {
+  padding: 20px;
 }
 .recipe-details h4 {
   margin: 0 0 10px 0;
@@ -75,9 +81,13 @@ header a {
   color: #333;
 }
 
-/* recipe form */
+/* recipe forms */
 label, input, textarea {
   display: block;
+}
+
+form h3 {
+  margin: 0 0 20px 0;
 }
 
 label span {
