@@ -24,10 +24,12 @@ Cooking is a big part of my life. I have a lot of online recipes bookmarked, but
 - The user can search their recipe collection by ingredient(s)
 
 ## Road Map 🗺️
-* [ ] Add functionality to parse recipes that utilize the standard Recipe Schema
-* [ ] Add authenitication so users can create and see personal recipe collections
-* [ ] Improve the UX for mobile use - for example, move the "add recipe" form to a drawer that is accessed by a hamburger menu.
+* [X] Add functionality to parse recipes that utilize the standard Recipe Schema.
+* [X] Add authenitication so users can create and see personal recipe collections.
+* [ ] Make the app fully responsive for mobile devices.
+* [ ] Add functionality to search by ingredient across all a user's saved recipes.
 * [ ] Change the styling to make the individual recipes appear like they are on recipe cards.
+* [ ] Add functionality so that the user can edit a recipe within the app.
 
 ## Acknowledgements ✨
 The basics of the app were developed with the help of the [Net Ninja MERN Stack Tutorial](https://github.com/iamshaunjp/MERN-Stack-Tutorial).
