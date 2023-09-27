@@ -1,7 +1,8 @@
 import { useEffect, useContext } from "react"
 import { Navigate } from "react-router-dom"
 import RecipeDetails from "../components/RecipeDetails"
-import RecipeForm from "../components/RecipeForm"
+import RecipeManualForm from "../components/RecipeManualForm"
+import RecipeUrlForm from "../components/RecipeUrlForm"
 import { RecipesContext } from "../context/RecipeContext"
 import { AuthContext } from "../context/AuthContext"
 
@@ -38,7 +39,10 @@ export default function Home() {
                             />
                         ))}
                     </div>
-                    <RecipeForm />
+                    <div>
+                        <RecipeUrlForm/>
+                        <RecipeManualForm />
+                    </div>
                 </div>
             )}
             {!user && <Navigate to={"/login"} />}
