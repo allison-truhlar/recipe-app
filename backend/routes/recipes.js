@@ -3,7 +3,8 @@ const express = require("express")
 //import controllers
 const {
     getRecipes,
-    createRecipe,
+    createRecipeManual,
+    createRecipeUrl,
     deleteRecipe,
 } = require("../controllers/recipeController")
 
@@ -21,8 +22,11 @@ router.use(requireAuth)
 // GET all recipes
 router.get("/", getRecipes)
 
-// POST a new recipe
-router.post("/", createRecipe)
+// POST a new recipe from form input
+router.post("/manual", createRecipeManual)
+
+// POST a new recipe from form input
+router.post("/url", createRecipeUrl)
 
 // DELETE a recipe
 router.delete("/:id", deleteRecipe)

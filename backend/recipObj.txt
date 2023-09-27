@@ -1,0 +1,86 @@
+{
+  '@type': 'Recipe',
+  name: 'Tofu Scramble: Breakfast of (vegan) Champions',
+  author: {
+    '@id': 'https://itdoesnttastelikechicken.com/#/schema/person/8d2dd92d2e8f1fba0c7c444c22acdf2a'
+  },
+  description: 'This is my favourite hearty classic vegan breakfast recipe. Spiced to perfection with peppers, beans, onions, and mushrooms for a perfect savoury brunch.&nbsp;',
+  datePublished: '2014-08-10T10:32:12+00:00',
+  image: [
+    'https://itdoesnttastelikechicken.com/wp-content/uploads/2014/08/tofu-scramble-breakfast-of-vegan-champions.jpg',
+    'https://itdoesnttastelikechicken.com/wp-content/uploads/2014/08/tofu-scramble-breakfast-of-vegan-champions-500x500.jpg',
+    'https://itdoesnttastelikechicken.com/wp-content/uploads/2014/08/tofu-scramble-breakfast-of-vegan-champions-500x375.jpg',
+    'https://itdoesnttastelikechicken.com/wp-content/uploads/2014/08/tofu-scramble-breakfast-of-vegan-champions-480x270.jpg'
+  ],
+  video: {
+    name: 'How To Make Tofu Scramble - Vegan Breakfast Recipe Easy.mp4',
+    description: 'null',
+    thumbnailUrl: 'https://content.jwplatform.com/thumbs/Z0rDRqqG-720.jpg',
+    contentUrl: 'https://content.jwplatform.com/videos/Z0rDRqqG.mp4',
+    uploadDate: '2021-09-01T17:56:16.000Z',
+    '@type': 'VideoObject'
+  },
+  recipeYield: [ '4' ],
+  prepTime: 'PT10M',
+  cookTime: 'PT16M',
+  totalTime: 'PT26M',
+  recipeIngredient: [
+    '2 tablespoons nutritional yeast',
+    '1 teaspoon chili powder',
+    '1 teaspoon ground cumin',
+    '1 teaspoon black salt ((also called kala namak) or regular salt)',
+    '3/4 teaspoons turmeric',
+    '1/4 teaspoon garlic powder',
+    '1 tablespoon oil ((such as olive or vegetalbe))',
+    '8 oz button mushrooms (sliced (about 1 1/2 cups sliced))',
+    '1  red pepper, (chopped)',
+    '1/2  yellow onion (chopped)',
+    '2 cloves garlic, (minced)',
+    '1 454g block medium-firm tofu or firm tofu OR 2 349g blocks extra firm silken tofu',
+    '1 19oz  can black beans (2 cups), (drained and rinsed)'
+  ],
+  recipeInstructions: [
+    {
+      '@type': 'HowToStep',
+      text: 'Add all of the spice mix ingredients into a bowl and stir to combine.',
+      name: 'Add all of the spice mix ingredients into a bowl and stir to combine.',
+      url: 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/#wprm-recipe-14009-step-0-0'
+    },
+    {
+      '@type': 'HowToStep',
+      text: 'Heat a large skillet over medium-high heat and add the olive oil. When hot, add the mushrooms, pepper, onion, and garlic and sauté for about 8 minutes until everything just starts to brown.',
+      name: 'Heat a large skillet over medium-high heat and add the olive oil. When hot, add the mushrooms, pepper, onion, and garlic and sauté for about 8 minutes until everything just starts to brown.',
+      url: 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/#wprm-recipe-14009-step-0-1'
+    },
+    {
+      '@type': 'HowToStep',
+      text: 'Add the tofu blocks and break it apart with your spoon until you get a nice scramble texture with lots of chunks.&nbsp;Stir in the spice mix and black beans. Heat through for another 5 - 8 minutes until hot.',
+      name: 'Add the tofu blocks and break it apart with your spoon until you get a nice scramble texture with lots of chunks.&nbsp;Stir in the spice mix and black beans. Heat through for another 5 - 8 minutes until hot.',
+      url: 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/#wprm-recipe-14009-step-0-2'
+    }
+  ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.96',
+    ratingCount: '70'
+  },
+  recipeCategory: [ 'Breakfast' ],
+  recipeCuisine: [ 'American', 'Canadian' ],
+  keywords: 'easy tofu scramble, easy vegan scrambled eggs',
+  nutrition: {
+    '@type': 'NutritionInformation',
+    calories: '175 kcal',
+    carbohydrateContent: '10 g',
+    proteinContent: '14 g',
+    fatContent: '9 g',
+    sodiumContent: '600 mg',
+    fiberContent: '3 g',
+    sugarContent: '3 g',
+    servingSize: '1 /4 of recipe'
+  },
+  '@id': 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/#recipe',
+  isPartOf: {
+    '@id': 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/#article'
+  },
+  mainEntityOfPage: 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/'
+}

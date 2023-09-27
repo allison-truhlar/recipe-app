@@ -1,0 +1,103 @@
+{
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/#article',
+      isPartOf: [Object],
+      author: [Object],
+      headline: 'Tofu Scramble: Breakfast of (vegan) Champions',
+      datePublished: '2014-08-10T14:32:12+00:00',
+      dateModified: '2023-06-01T14:29:45+00:00',
+      wordCount: 972,
+      commentCount: 213,
+      publisher: [Object],
+      image: [Object],
+      thumbnailUrl: 'https://itdoesnttastelikechicken.com/wp-content/uploads/2014/08/tofu-scramble-breakfast-of-vegan-champions.jpg',
+      keywords: [Array],
+      articleSection: [Array],
+      inLanguage: 'en-US',
+      potentialAction: [Array]
+    },
+    {
+      '@type': 'WebPage',
+      '@id': 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/',
+      url: 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/',
+      name: 'Tofu Scramble: Breakfast of (vegan) Champions &#8226; It Doesn&#039;t Taste Like Chicken',
+      isPartOf: [Object],
+      primaryImageOfPage: [Object],
+      image: [Object],
+      thumbnailUrl: 'https://itdoesnttastelikechicken.com/wp-content/uploads/2014/08/tofu-scramble-breakfast-of-vegan-champions.jpg',
+      datePublished: '2014-08-10T14:32:12+00:00',
+      dateModified: '2023-06-01T14:29:45+00:00',
+      description: 'The Breakfast of (vegan) Champions! Tofu Scramble. The classic hearty vegan breakfast or brunch recipe. #itdoesnttastelikechicken',
+      breadcrumb: [Object],
+      inLanguage: 'en-US',
+      potentialAction: [Array]
+    },
+    {
+      '@type': 'ImageObject',
+      inLanguage: 'en-US',
+      '@id': 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/#primaryimage',
+      url: 'https://itdoesnttastelikechicken.com/wp-content/uploads/2014/08/tofu-scramble-breakfast-of-vegan-champions.jpg',
+      contentUrl: 'https://itdoesnttastelikechicken.com/wp-content/uploads/2014/08/tofu-scramble-breakfast-of-vegan-champions.jpg',
+      width: 501,
+      height: 700
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/#breadcrumb',
+      itemListElement: [Array]
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://itdoesnttastelikechicken.com/#website',
+      url: 'https://itdoesnttastelikechicken.com/',
+      name: 'It Doesn&#039;t Taste Like Chicken',
+      description: 'Quick and Easy Vegan Recipes',
+      publisher: [Object],
+      potentialAction: [Array],
+      inLanguage: 'en-US'
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://itdoesnttastelikechicken.com/#organization',
+      name: "It Doesn't Taste Like Chicken",
+      url: 'https://itdoesnttastelikechicken.com/',
+      logo: [Object],
+      image: [Object],
+      sameAs: [Array]
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://itdoesnttastelikechicken.com/#/schema/person/8d2dd92d2e8f1fba0c7c444c22acdf2a',
+      name: 'Sam Turnbull',
+      description: "Hi! I'm Sam. I like vegan food, and I hope to show you that vegan food, should really just be called food. It's not as weird as it sounds. Promise.",
+      sameAs: [Array],
+      url: 'https://itdoesnttastelikechicken.com/author/samwp/'
+    },
+    {
+      '@type': 'Recipe',
+      name: 'Tofu Scramble: Breakfast of (vegan) Champions',
+      author: [Object],
+      description: 'This is my favourite hearty classic vegan breakfast recipe. Spiced to perfection with peppers, beans, onions, and mushrooms for a perfect savoury brunch.&nbsp;',
+      datePublished: '2014-08-10T10:32:12+00:00',
+      image: [Array],
+      video: [Object],
+      recipeYield: [Array],
+      prepTime: 'PT10M',
+      cookTime: 'PT16M',
+      totalTime: 'PT26M',
+      recipeIngredient: [Array],
+      recipeInstructions: [Array],
+      aggregateRating: [Object],
+      recipeCategory: [Array],
+      recipeCuisine: [Array],
+      keywords: 'easy tofu scramble, easy vegan scrambled eggs',
+      nutrition: [Object],
+      '@id': 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/#recipe',
+      isPartOf: [Object],
+      mainEntityOfPage: 'https://itdoesnttastelikechicken.com/tofu-scramble-breakfast-vegan-champions/'
+    }
+  ]
+}
