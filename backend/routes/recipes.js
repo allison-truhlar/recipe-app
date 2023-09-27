@@ -3,18 +3,18 @@ const express = require("express")
 //import controllers
 const {
     getRecipes,
-    createRecipeManual,
-    createRecipeUrl,
+    createRecipe,
     deleteRecipe,
 } = require("../controllers/recipeController")
 
 //import middleware
 const requireAuth = require("../middleware/requireAuth")
+const parseRecipeData = require("../middleware/parseRecipeData")
 
 // create router instance
 const router = express.Router()
 
-// require middleware
+// require requireAuth middleware on all recipe routes
 router.use(requireAuth)
 
 //Routes
@@ -22,11 +22,11 @@ router.use(requireAuth)
 // GET all recipes
 router.get("/", getRecipes)
 
-// POST a new recipe from form input
-router.post("/manual", createRecipeManual)
+// POST a new recipe
+router.post("/", createRecipe)
 
-// POST a new recipe from form input
-router.post("/url", createRecipeUrl)
+// POST a new recipe, using parseRecipeData middleware
+router.post("/url", parseRecipeData, createRecipe)
 
 // DELETE a recipe
 router.delete("/:id", deleteRecipe)
