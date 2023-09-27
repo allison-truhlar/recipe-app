@@ -32,77 +32,89 @@ export default function RecipeForm() {
             setError("You must be logged in")
             return
         }
-
-        const recipe = {
-            url, 
-            name, 
-            recipeIngredient: parseTextArea(recipeIngredient), 
-            recipeInstructions: parseTextArea(recipeInstructions)
-        }
-
-        const response = await fetch("/api/recipes", {
+        
+        const response = await fetch("/api/recipes/url", {
             method: "POST",
-            body: JSON.stringify(recipe),
+            body: JSON.stringify({url}),
             headers: {
                 "Content-Type": "application/json"
             }
         })
-        const json = await response.json()
 
-        if(!response.ok){
-            setError(json.error)
-            setEmptyFields(json.emptyFields)
-        }
-        if(response.ok){
-            setUrl("")
-            setName("")
-            setRecipeIngredient("")
-            setRecipeInstructions("")
-            setError(null)
-            setEmptyFields([])
-            dispatch({type: "CREATE_RECIPE", payload: json})
-        }
+
+        // const recipe = {
+        //     url, 
+        //     name, 
+        //     recipeIngredient: parseTextArea(recipeIngredient), 
+        //     recipeInstructions: parseTextArea(recipeInstructions)
+        // }
+
+        // const response = await fetch("/api/recipes", {
+        //     method: "POST",
+        //     body: JSON.stringify(recipe),
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     }
+        // })
+        // const json = await response.json()
+
+        // if(!response.ok){
+        //     setError(json.error)
+        //     setEmptyFields(json.emptyFields)
+        // }
+        // if(response.ok){
+        //     setUrl("")
+        //     setName("")
+        //     setRecipeIngredient("")
+        //     setRecipeInstructions("")
+        //     setError(null)
+        //     setEmptyFields([])
+        //     dispatch({type: "CREATE_RECIPE", payload: json})
+        // }
 }
 
     return(
         <form className="create" onSubmit={handleSubmit}>
             <h3>Add a New Recipe</h3>
             
-            <label>Recipe Name:</label>
-            <input 
-                type="text"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                className={emptyFields.includes("name") ? "error" : ""}
-            />
-
-            <label>Recipe Ingredients:<br/>
-                <span>Separate each ingredient with a semi-colon or return</span>
-            </label>
-            <textarea 
-                onChange={(e) => setRecipeIngredient(e.target.value)}
-                value={recipeIngredient}
-                className={emptyFields.includes("recipeIngredient") ? "error" : ""}
-            />
-
-            <label>Recipe Instructions:<br/>
-                <span>Separate each step with a semi-colon or return</span>
-            </label>
-            <textarea 
-                onChange={(e) => setRecipeInstructions(e.target.value)}
-                value={recipeInstructions}
-                className={emptyFields.includes("recipeInstructions") ? "error" : ""}
-            />
-
             <label>Recipe URL (optional):</label>
             <input 
                 type="text"
                 onChange={(e) => setUrl(e.target.value)}
                 value={url}
             />
+            
+
 
             <button>Add recipe</button>
             {error && <div className="error">{error}</div>}
         </form>
     )
 }
+
+
+{/* <label>Recipe Name:</label>
+<input 
+    type="text"
+    onChange={(e) => setName(e.target.value)}
+    value={name}
+    className={emptyFields.includes("name") ? "error" : ""}
+/>
+
+<label>Recipe Ingredients:<br/>
+    <span>Separate each ingredient with a semi-colon or return</span>
+</label>
+<textarea 
+    onChange={(e) => setRecipeIngredient(e.target.value)}
+    value={recipeIngredient}
+    className={emptyFields.includes("recipeIngredient") ? "error" : ""}
+/>
+
+<label>Recipe Instructions:<br/>
+    <span>Separate each step with a semi-colon or return</span>
+</label>
+<textarea 
+    onChange={(e) => setRecipeInstructions(e.target.value)}
+    value={recipeInstructions}
+    className={emptyFields.includes("recipeInstructions") ? "error" : ""}
+/> */}
