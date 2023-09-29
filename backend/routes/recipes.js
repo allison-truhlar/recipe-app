@@ -4,6 +4,7 @@ const express = require("express")
 const {
     getRecipes,
     createRecipe,
+    searchRecipe,
     deleteRecipe,
 } = require("../controllers/recipeController")
 
@@ -27,6 +28,9 @@ router.post("/", createRecipe)
 
 // POST a new recipe, using parseRecipeData middleware
 router.post("/url", parseRecipeData, createRecipe)
+
+// Search for a recipe by POSTing an ingredient
+router.post("/search", searchRecipe)
 
 // DELETE a recipe
 router.delete("/:id", deleteRecipe)
