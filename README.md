@@ -26,8 +26,8 @@ Cooking is a big part of my life. I have a lot of online recipes bookmarked, but
 ## Road Map 🗺️
 * [X] Add functionality to parse recipes that utilize the standard Recipe Schema.
 * [X] Add authenitication so users can create and see personal recipe collections.
+* [X] Add functionality to search by ingredient across all a user's saved recipes.
 * [ ] Make the app fully responsive for mobile devices.
-* [ ] Add functionality to search by ingredient across all a user's saved recipes.
 * [ ] Change the styling to make the individual recipes appear like they are on recipe cards.
 * [ ] Add functionality so that the user can edit a recipe within the app.
 
