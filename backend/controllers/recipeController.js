@@ -39,6 +39,27 @@ const createRecipe = async(req, res) => {
     }
 }
 
+// function to search for a recipe by ingredient
+const searchRecipe = async (req, res) => {
+    try {
+        let query = req.body.ingredient
+    
+        const recipes = await Recipe.find({
+            user_id: req.user._id,
+            $or: [
+                {name: {$regex: new RegExp(query, "i")}},
+                {recipeIngredient: {$regex: new RegExp(query, "i")}}
+            ]
+        })
+        if (recipes.length < 1){
+            return res.status(400).json({error: "No recipes found. Please search another ingredient."})
+        }
+        res.status(200).json(recipes)
+    } catch(error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+
 
 //function to delete a recipe
 const deleteRecipe = async(req, res) => {
@@ -59,6 +80,7 @@ const deleteRecipe = async(req, res) => {
 module.exports = {
     getRecipes,
     createRecipe,
+    searchRecipe,
     deleteRecipe
 }
 
