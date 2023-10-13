@@ -29,21 +29,17 @@ export default function Navbar(){
 
     return(
         <header>
-            <div className="container">
-                <Link to="/">
-                    <h1>Recipe Keeper</h1>
-                </Link>
+            <div className="display-container">
                 <nav>
+                    <div className="flex">
+                        <h1>Recipe Keeper</h1>
+                        {user && (
+                            <button onClick={handleLogoutClick}>Log out</button>
+                        )}
+                    </div>
                     {user && (
                         <div>
-                        <span>What's cooking, {user.username}? </span>
-                        <button onClick={handleLogoutClick}>Log out</button>
-                    </div>
-                    )}
-                    {!user && (
-                        <div>
-                            <Link to="/login">Log in</Link>
-                            <Link to="/signup">Sign up</Link>
+                            <p>What's cooking, {user.username}? </p>
                         </div>
                     )}
                 </nav>
