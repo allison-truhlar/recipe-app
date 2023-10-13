@@ -1,5 +1,6 @@
 import { useState, useContext } from "react"
 import { Navigate } from "react-router-dom"
+import SelectActionForm from "../components/SelectActionForm"
 import RecipeDetails from "../components/RecipeDetails"
 import RecipeManualForm from "../components/RecipeManualForm"
 import RecipeUrlForm from "../components/RecipeUrlForm"
@@ -65,6 +66,11 @@ export default function Home() {
         <>
             {user && (
                 <div className="home">
+                    <div>
+                        <SelectActionForm
+                            
+                        />
+                    </div>
                     <div className="recipes">
                         {recipes && recipes.map((recipe) => (
                             <RecipeDetails

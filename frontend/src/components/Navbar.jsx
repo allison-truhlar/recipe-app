@@ -1,5 +1,4 @@
 import { useContext } from "react"
-import { Link } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 import { RecipesContext } from "../context/RecipeContext"
 
@@ -37,11 +36,7 @@ export default function Navbar(){
                             <button onClick={handleLogoutClick}>Log out</button>
                         )}
                     </div>
-                    {user && (
-                        <div>
-                            <p>What's cooking, {user.username}? </p>
-                        </div>
-                    )}
+                    
                 </nav>
             </div>
         </header>
