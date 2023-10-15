@@ -11,7 +11,7 @@ export default function RecipeUrlForm(props) {
                 value={props.ingredient}
             />
 
-            <button>Search</button>
+            <button class="btn submit-btn">Search</button>
             {props.error && <div className="error">{props.error}</div>}
         </form>
     )

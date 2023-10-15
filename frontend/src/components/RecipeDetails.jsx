@@ -32,7 +32,7 @@ export default function RecipeDetails({recipe}){
            {recipe.recipeInstructions.map((instruction)=>(
                 <p>{instruction}</p>))}
             {recipe.url && <a href={recipe.url}>Visit the original recipe</a>}
-            <button className="material-symbols-outlined" onClick={()=>handleDeleteClick(recipe._id)}>
+            <button className="btn delete-recipe-btn material-symbols-outlined" onClick={()=>handleDeleteClick(recipe._id)}>
                 delete
             </button>
         </div>

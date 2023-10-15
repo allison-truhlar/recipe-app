@@ -65,13 +65,13 @@ export default function Home() {
     return (
         <>
             {user && (
-                <div className="home display-container flex-col">
-                    <div>
+                <div className="home flex-col">
+                    <div className="display-container">
                         <SelectActionForm
                             
                         />
                     </div>
-                    <div className="recipes">
+                    <div className="recipes display-container">
                         {recipes && recipes.map((recipe) => (
                             <RecipeDetails
                                 key={recipe._id}
@@ -79,7 +79,7 @@ export default function Home() {
                             />
                         ))}
                     </div>
-                    <div>
+                    <div className="display-container">
                         <Search
                             ingredient={ingredient}
                             setIngredient={setIngredient} 

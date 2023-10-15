@@ -13,6 +13,24 @@ body {
   width: 90%;
 }
 
+.flex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-col{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pages{
+  max-width: 1400px;
+  min-height: 90%;
+  margin: 0 auto;
+}
+
 header {
   background: #fff;
   display: flex;
@@ -27,22 +45,14 @@ header h1{
   padding: 0;
 }
 
-.flex{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.btn {
+  font-family: "Poppins";
+  cursor: pointer;
 }
 
-.flex-col{
-  display: flex;
-  flex-direction: column;
-}
-
-.pages{
-  max-width: 1400px;
-  min-height: 90%;
-  padding: 1.25em;
-  margin: 0 auto;
+.btn:hover,
+.btn:focus{
+  transform: scale(1.05);
 }
 
 /* navbar */
@@ -51,36 +61,36 @@ header h1{
   align-items: center;
 } */
 
-nav button {
+.logout-btn {
   background: #fff;
   color: var(--primary);
   border: 2px solid var(--primary);
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
-  font-family: "Poppins";
-  cursor: pointer;
   font-size: 0.8rem;
 }
 
-nav button:hover,
-nav button:focus{
-  transform: scale(1.05);
-}
 
-/* homepage */
-.home {
-  margin: auto;
-  border: 1px solid red;
-}
 
 /* Cards for forms and recipes */
 .card {
+  max-width: 100%;
   background: #fff;
   border-radius: 4px;
-  margin: 1.3em auto;
+  margin: 1.3em 0;
   padding: 1.5em;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Select action card */
+.select-action-btn{
+  display: block;
+  background: #fff;
+  color: var(--primary);
+  border: none;
+  padding: 0.2rem 0;
+  font-size: 1rem;
 }
 
 /* Recipe card */
@@ -88,10 +98,15 @@ nav button:focus{
   padding: 20px;
 } */
 .card h4 {
-  margin: 0 0 10px 0;
+  margin: 0 0 0.75em 0;
   font-size: 1.2em;
   color: var(--primary);
 }
+
+.card h3 {
+  margin: 0 0 0.75em 0;
+}
+
 .card p {
   margin-bottom: 1em;
   line-height: 1.25;
@@ -105,11 +120,10 @@ nav button:focus{
   cursor: pointer;
 }
 
-.recipe-details button {
+.delete-recipe-btn {
   position: absolute;
   top: 20px;
   right: 20px;
-  cursor: pointer;
   background: #f1f1f1;
   padding: 6px;
   border-radius: 50%;
@@ -143,14 +157,12 @@ input, textarea {
   font-size: 0.9em;
 }
 
-form button {
+.submit-btn {
   background: var(--primary);
   border: 0;
   color: #fff;
-  padding: 10px;
-  font-family: "Poppins";
+  padding: 1em;
   border-radius: 4px;
-  cursor: pointer;
 }
 
 div.error {

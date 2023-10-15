@@ -101,7 +101,7 @@ export default function RecipeManualForm() {
                 className={emptyFields.includes("recipeInstructions") ? "error" : ""}
             />
 
-            <button>Add recipe</button>
+            <button class="btn submit-btn">Add recipe</button>
             {error && <div className="error">{error}</div>}
         </form>
     )

@@ -33,7 +33,7 @@ export default function Navbar(){
                     <div className="flex">
                         <h1>Recipe Keeper</h1>
                         {user && (
-                            <button onClick={handleLogoutClick}>Log out</button>
+                            <button className="btn logout-btn" onClick={handleLogoutClick}>Log out</button>
                         )}
                     </div>
                     <p>Your favorite recipes, in one place</p>

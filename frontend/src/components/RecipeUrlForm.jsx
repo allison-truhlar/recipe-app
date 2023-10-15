@@ -50,7 +50,7 @@ export default function RecipeUrlForm() {
                 value={url}
             />
 
-            <button>Add recipe</button>
+            <button class="btn submit-btn">Add recipe</button>
             {error && <div className="error">{error}</div>}
         </form>
     )
