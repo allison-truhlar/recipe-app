@@ -1,7 +1,7 @@
 export default function RecipeUrlForm(props) {
     
     return(
-        <form className="create" onSubmit={(e) => props.handleSearch(e)}>
+        <form className="card" onSubmit={(e) => props.handleSearch(e)}>
             <h3>Search recipes by ingredient</h3>
             
             <label>Ingredient name:</label>

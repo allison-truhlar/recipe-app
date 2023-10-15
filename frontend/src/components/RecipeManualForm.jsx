@@ -65,7 +65,7 @@ export default function RecipeManualForm() {
     }
 
     return(
-        <form className="create" onSubmit={handleSubmit}>
+        <form className="card" onSubmit={handleSubmit}>
             <h3>Add Recipe Manually</h3>
             
             <label>Recipe URL (optional):</label>

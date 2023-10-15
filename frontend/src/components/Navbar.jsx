@@ -36,7 +36,7 @@ export default function Navbar(){
                             <button onClick={handleLogoutClick}>Log out</button>
                         )}
                     </div>
-                    
+                    <p>Your favorite recipes, in one place</p>
                 </nav>
             </div>
         </header>

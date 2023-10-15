@@ -65,7 +65,7 @@ export default function Home() {
     return (
         <>
             {user && (
-                <div className="home">
+                <div className="home display-container flex-col">
                     <div>
                         <SelectActionForm
                             

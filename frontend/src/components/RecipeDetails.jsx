@@ -23,7 +23,7 @@ export default function RecipeDetails({recipe}){
     }
 
     return(
-        <div className="recipe-details">
+        <div className="card">
             <h4>{recipe.name}</h4>
             <p><strong>Ingredients</strong></p>
             {recipe.recipeIngredient.map((ingredient)=>(

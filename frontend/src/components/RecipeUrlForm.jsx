@@ -40,7 +40,7 @@ export default function RecipeUrlForm() {
     }
 
     return(
-        <form className="create" onSubmit={handleSubmit}>
+        <form className="card" onSubmit={handleSubmit}>
             <h3>Add Recipe with URL</h3>
             
             <label>Recipe URL:</label>

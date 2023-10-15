@@ -6,7 +6,7 @@ const LandingPageLayout = () => {
   return (
     <div>
         <Navbar />
-        <div className="pages">
+        <div className="pages flex-col">
             <Outlet />
         </div>
     </div>

@@ -18,7 +18,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block: 1rem;
+  padding-block: 1em;
 }
 
 header h1{
@@ -33,9 +33,15 @@ header h1{
   justify-content: space-between;
 }
 
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
+
 .pages{
   max-width: 1400px;
-  padding: 20px;
+  min-height: 90%;
+  padding: 1.25em;
   margin: 0 auto;
 }
 
@@ -63,37 +69,37 @@ nav button:focus{
 
 /* homepage */
 .home {
-
+  margin: auto;
+  border: 1px solid red;
 }
 
 /* Cards for forms and recipes */
-form,
-.recipe-details {
+.card {
   background: #fff;
   border-radius: 4px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 1.3em auto;
+  padding: 1.5em;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
 
 /* Recipe card */
-.recipe-details {
+/* .recipe-details {
   padding: 20px;
-}
-.recipe-details h4 {
+} */
+.card h4 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
   color: var(--primary);
 }
-.recipe-details p {
+.card p {
   margin-bottom: 1em;
   line-height: 1.25;
   font-size: 0.9em;
   color: #555;
 }
 
-.recipe-details a {
+.card a {
   font-size: 0.9em;
   color: var(--primary);
   cursor: pointer;
@@ -173,7 +179,7 @@ form.signup, form.login {
 
 .redirect-link{
   margin-top: 20px;
-}
+}npm 
 
 @media (min-width: 800px) {
   .home {

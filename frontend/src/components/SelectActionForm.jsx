@@ -6,10 +6,10 @@ export default function SelectActionForm(props) {
     const {user} = useContext(AuthContext)
     
     return(
-        <div className="create">
+        <div className="card">
             {user && (
                         <div>
-                            <p>What's cooking, {user.username}? </p>
+                            <h3>What's cooking, {user.username}? </h3>
                         </div>
                     )}
             
@@ -19,8 +19,8 @@ export default function SelectActionForm(props) {
                 onChange={(e) => props.setIngredient(e.target.value)}
                 value={props.ingredient}
             /> */}
-            <button>View all my recipes</button>
-            <button>Search all my recipes</button>
+            <button>View my recipes</button>
+            <button>Search my recipes</button>
             <button>Add a recipe with URL</button>
             <button>Add a recipe manually</button>
             {props.error && <div className="error">{props.error}</div>}
