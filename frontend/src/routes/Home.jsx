@@ -10,6 +10,7 @@ import { AuthContext } from "../context/AuthContext"
 
 export default function Home() {
     const [action, setAction] = useState("")
+    const [expanded, setExpanded] = useState(true)
     const [ingredient, setIngredient] = useState("")
     const [error, setError] = useState(null)
     const {recipes, dispatch: recipeDispatch} = useContext(RecipesContext)
@@ -34,7 +35,12 @@ export default function Home() {
 
     const handleSelect = (selectedAction) => {
         setAction(selectedAction)
+        setExpanded(false)
     }
+
+    const toggleExpand = () =>{
+        setExpanded(prevExpanded => !prevExpanded)
+    } 
 
     const handleSearch = async (e) =>{
         e.preventDefault()
@@ -73,6 +79,9 @@ export default function Home() {
                 <div className="home flex-col">
                     <div className="display-container">
                         <SelectActionForm
+                            // action = {action}
+                            expanded = {expanded}
+                            toggleExpand = {toggleExpand}
                             handleSelect={handleSelect}
                         />
                     </div>
