@@ -9,6 +9,7 @@ import { RecipesContext } from "../context/RecipeContext"
 import { AuthContext } from "../context/AuthContext"
 
 export default function Home() {
+    const [action, setAction] = useState("")
     const [ingredient, setIngredient] = useState("")
     const [error, setError] = useState(null)
     const {recipes, dispatch: recipeDispatch} = useContext(RecipesContext)
@@ -30,6 +31,10 @@ export default function Home() {
     //     }
 
     // }, [user])
+
+    const handleSelect = (selectedAction) => {
+        setAction(selectedAction)
+    }
 
     const handleSearch = async (e) =>{
         e.preventDefault()
@@ -68,27 +73,39 @@ export default function Home() {
                 <div className="home flex-col">
                     <div className="display-container">
                         <SelectActionForm
-                            
+                            handleSelect={handleSelect}
                         />
                     </div>
-                    <div className="recipes display-container">
-                        {recipes && recipes.map((recipe) => (
-                            <RecipeDetails
-                                key={recipe._id}
-                                recipe={recipe}
+                    {action === "view" && (
+                        <div className="recipes display-container">
+                            {recipes && recipes.map((recipe) => (
+                                <RecipeDetails
+                                    key={recipe._id}
+                                    recipe={recipe}
+                                />
+                            ))}
+                        </div>
+                    )}
+                    {(action === "search") && (
+                        <div className="display-container">
+                            <Search
+                                ingredient={ingredient}
+                                setIngredient={setIngredient} 
+                                handleSearch={handleSearch} 
+                                error={error}
                             />
-                        ))}
-                    </div>
-                    <div className="display-container">
-                        <Search
-                            ingredient={ingredient}
-                            setIngredient={setIngredient} 
-                            handleSearch={handleSearch} 
-                            error={error}
-                        />
-                        <RecipeUrlForm/>
-                        <RecipeManualForm />
-                    </div>
+                        </div>
+                    )}
+                    {(action === "addUrl") && (
+                        <div className="display-container">
+                            <RecipeUrlForm/>
+                        </div>
+                    )}
+                    {(action === "addManual") && (
+                        <div className="display-container">
+                            <RecipeManualForm />
+                        </div>
+                    )}
                 </div>
             )}
             {!user && <Navigate to={"/login"} />}

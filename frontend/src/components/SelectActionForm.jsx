@@ -13,16 +13,28 @@ export default function SelectActionForm(props) {
                         </div>
                     )}
             
-            {/* <label>Ingredient name:</label>
-            <input 
-                type="text"
-                onChange={(e) => props.setIngredient(e.target.value)}
-                value={props.ingredient}
-            /> */}
-            <button className="btn select-action-btn">View my recipes</button>
-            <button className="btn select-action-btn">Search my recipes</button>
-            <button className="btn select-action-btn">Add a recipe with URL</button>
-            <button className="btn select-action-btn">Add a recipe manually</button>
+            <button 
+                className="btn select-action-btn"
+                onClick={()=> props.handleSelect("view")}
+            >View my recipes</button>
+
+            <button 
+                className="btn select-action-btn"
+                onClick={()=> props.handleSelect("search")}
+            >Search my recipes</button>
+
+            <button 
+                className="btn select-action-btn"
+                onClick={()=> props.handleSelect("addUrl")}
+            >Add a recipe with URL
+            </button>
+
+            <button 
+                className="btn select-action-btn"
+                onClick={()=> props.handleSelect("addManual")}
+            >Add a recipe manually
+            </button>
+
             {props.error && <div className="error">{props.error}</div>}
         </div>
     )
