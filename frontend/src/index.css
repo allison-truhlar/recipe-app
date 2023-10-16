@@ -55,6 +55,13 @@ header h1{
   transform: scale(1.05);
 }
 
+.btn-outlined{
+  background: #fff;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 4px;
+}
+
 /* navbar */
 /* nav {
   display: flex;
@@ -62,13 +69,11 @@ header h1{
 } */
 
 .logout-btn {
-  background: #fff;
-  color: var(--primary);
-  border: 2px solid var(--primary);
   padding: 0.2rem 0.6rem;
-  border-radius: 4px;
   font-size: 0.8rem;
 }
+
+
 
 
 
@@ -91,6 +96,15 @@ header h1{
   border: none;
   padding: 0.2rem 0;
   font-size: 1rem;
+} 
+
+.expand-btn{
+  display: flex;
+  padding: 0;
+}
+
+.expand-btn>span{
+  margin: auto;
 }
 
 /* Recipe card */
@@ -104,7 +118,7 @@ header h1{
 }
 
 .card h3 {
-  margin: 0 0 0.75em 0;
+  margin: 0;
 }
 
 .card p {
@@ -134,10 +148,6 @@ header h1{
 /* recipe forms */
 label, input, textarea {
   display: block;
-}
-
-form h3 {
-  margin: 0 0 20px 0;
 }
 
 label span {
@@ -191,7 +201,7 @@ form.signup, form.login {
 
 .redirect-link{
   margin-top: 20px;
-}npm 
+}
 
 @media (min-width: 800px) {
   .home {

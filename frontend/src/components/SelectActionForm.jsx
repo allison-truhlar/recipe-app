@@ -15,21 +15,21 @@ export default function SelectActionForm(props) {
         <div className="card">
             {user && (
                 <>
-                    <div class="flex">
+                    <div className="flex">
                         <h3>What's cooking, {user.username}? </h3>
                         {props.expanded ? (
                             <button 
-                                class="material-symbols-outlined"
+                                className="btn btn-outlined expand-btn"
                                 onClick={props.toggleExpand}
                             >
-                            expand_less
+                            <span className="material-symbols-outlined">expand_less</span>
                         </button>
                         ):(
                         <button 
-                            class="material-symbols-outlined"
+                            className="btn btn-outlined expand-btn"
                             onClick={props.toggleExpand}
-                        >
-                            expand_more
+                        > 
+                            <span className="material-symbols-outlined">expand_more</span>  
                         </button>
                         )}
                         
