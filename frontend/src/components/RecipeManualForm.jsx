@@ -30,7 +30,8 @@ export default function RecipeManualForm() {
         e.preventDefault()
 
         if (!user) {
-            setError("You must be logged in")
+            setError(true)
+            setMsg("You must be logged in")
             return
         }
 

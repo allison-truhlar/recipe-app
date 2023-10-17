@@ -77,7 +77,7 @@ export default function Home() {
         if (response.ok) {
             setIngredient("")
             setError(null)
-            recipeDispatch({ type: "SET_RECIPES", payload: json })
+            recipeDispatch({ type: "SET_RECIPES", payload: json.recipe })
         }
 
 
