@@ -33,9 +33,9 @@ const createRecipe = async(req, res) => {
     try{
         const user_id = req.user._id
         const recipe = await Recipe.create({url, name, recipeIngredient, recipeInstructions, user_id})
-        res.status(200).json(recipe)
+        res.status(200).json({recipe, msg:"Success! Recipe added!"})
     } catch(error){
-        res.status(400).json({error: error.message})
+        res.status(400).json({msg: error.message})
     }
 }
 
@@ -52,7 +52,7 @@ const searchRecipe = async (req, res) => {
             ]
         })
         if (recipes.length < 1){
-            return res.status(400).json({error: "No recipes found. Please search another ingredient."})
+            return res.status(400).json({error: "No recipes found. Please search another ingredient or add more recipes."})
         }
         res.status(200).json(recipes)
     } catch(error) {

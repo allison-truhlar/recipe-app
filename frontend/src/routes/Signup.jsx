@@ -60,7 +60,7 @@ export default function Signup(){
                         value={password}
                     />
 
-                    <button disabled={isLoading}>Sign up</button>
+                    <button className="btn submit-btn" disabled={isLoading}>Sign up</button>
                     {error && <div className="error">{error}</div>}
                     <div className="redirect-link">Have an account? <Link to="/login">Login!</Link></div>
                 </form>

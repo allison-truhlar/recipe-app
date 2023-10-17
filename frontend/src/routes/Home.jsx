@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { Navigate } from "react-router-dom"
 import SelectActionForm from "../components/SelectActionForm"
 import RecipeDetails from "../components/RecipeDetails"
@@ -7,42 +7,52 @@ import RecipeUrlForm from "../components/RecipeUrlForm"
 import Search from "../components/Search"
 import { RecipesContext } from "../context/RecipeContext"
 import { AuthContext } from "../context/AuthContext"
+// import { MenuExpandContext } from "../context/MenuExpandContext"
 
 export default function Home() {
     const [action, setAction] = useState("")
-    const [expanded, setExpanded] = useState(true)
+    const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 768 ? true : false)
     const [ingredient, setIngredient] = useState("")
     const [error, setError] = useState(null)
-    const {recipes, dispatch: recipeDispatch} = useContext(RecipesContext)
-    const {user} = useContext(AuthContext)
+    const { recipes, dispatch: recipeDispatch } = useContext(RecipesContext)
+    const { user } = useContext(AuthContext)
+    // const {expanded, setExpanded, toggleExpand} = useContext(MenuExpandContext)
 
-    // useEffect(()=>{
-        
-    //     async function fetchRecipes() {
-    //         const response = await fetch("/api/recipes")
-    //         const json = await response.json()
+    const handleResize = () => {
+        setIsWideScreen(window.innerWidth > 768);
+    };
 
-    //         if(response.ok){
-    //             recipeDispatch({type:"SET_RECIPES", payload: json})
-    //         }
-    //     }
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    });
 
-    //     if(user){
-    //         fetchRecipes()
-    //     }
+    useEffect(() => {
 
-    // }, [user])
+        async function fetchRecipes() {
+            const response = await fetch("/api/recipes")
+            const json = await response.json()
+
+            if (response.ok) {
+                recipeDispatch({ type: "SET_RECIPES", payload: json })
+            }
+        }
+
+        if (user && (action === "view" || action === "")) {
+            fetchRecipes()
+        }
+
+    }, [user, action])
 
     const handleSelect = (selectedAction) => {
         setAction(selectedAction)
-        setExpanded(false)
+        setExpanded(window.innerWidth > 768 ? true : false);
     }
 
-    const toggleExpand = () =>{
-        setExpanded(prevExpanded => !prevExpanded)
-    } 
 
-    const handleSearch = async (e) =>{
+    const handleSearch = async (e) => {
         e.preventDefault()
 
         if (!user) {
@@ -61,60 +71,61 @@ export default function Home() {
         const json = await response.json()
         console.log(response)
 
-        if(!response.ok){
+        if (!response.ok) {
             setError(json.error)
         }
-        if(response.ok){
+        if (response.ok) {
             setIngredient("")
             setError(null)
-            recipeDispatch({type:"SET_RECIPES", payload: json})
+            recipeDispatch({ type: "SET_RECIPES", payload: json })
         }
 
 
     }
 
+    const handleClear = (e) => {
+        e.preventDefault()
+        setIngredient("")
+        setError(null)
+    }
+
+   
     return (
         <>
             {user && (
-                <div className="home flex-col">
-                    <div className="display-container">
+                <div className="home home-flex display-container">
+                    <div className="utility-card-container">
                         <SelectActionForm
-                            // action = {action}
-                            expanded = {expanded}
-                            toggleExpand = {toggleExpand}
+                            action={action}
+                            isWideScreen={isWideScreen}
                             handleSelect={handleSelect}
                         />
+
+                        {(action === "search") && (
+                            <Search
+                                ingredient={ingredient}
+                                setIngredient={setIngredient}
+                                handleSearch={handleSearch}
+                                handleClear={handleClear}
+                                error={error}
+                            />
+                        )}
+                        {(action === "addUrl") && (
+                            <RecipeUrlForm />
+                        )}
+                        {(action === "addManual") && (
+                            <RecipeManualForm />
+                        )}
                     </div>
-                    {action === "view" && (
-                        <div className="recipes display-container">
-                            {recipes && recipes.map((recipe) => (
+
+                    <div className="recipe-card-container">
+                        {recipes && recipes.map((recipe) => (
                                 <RecipeDetails
                                     key={recipe._id}
                                     recipe={recipe}
                                 />
                             ))}
-                        </div>
-                    )}
-                    {(action === "search") && (
-                        <div className="display-container">
-                            <Search
-                                ingredient={ingredient}
-                                setIngredient={setIngredient} 
-                                handleSearch={handleSearch} 
-                                error={error}
-                            />
-                        </div>
-                    )}
-                    {(action === "addUrl") && (
-                        <div className="display-container">
-                            <RecipeUrlForm/>
-                        </div>
-                    )}
-                    {(action === "addManual") && (
-                        <div className="display-container">
-                            <RecipeManualForm />
-                        </div>
-                    )}
+                    </div>
                 </div>
             )}
             {!user && <Navigate to={"/login"} />}

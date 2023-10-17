@@ -1,7 +1,7 @@
 export default function RecipeUrlForm(props) {
     
     return(
-        <form className="card" onSubmit={(e) => props.handleSearch(e)}>
+        <form className="card search-card" >
             <h3>Search recipes by ingredient</h3>
             
             <label>Ingredient name:</label>
@@ -10,8 +10,10 @@ export default function RecipeUrlForm(props) {
                 onChange={(e) => props.setIngredient(e.target.value)}
                 value={props.ingredient}
             />
-
-            <button class="btn submit-btn">Search</button>
+            <div className="flex search-btn-container">
+                <button type="submit" className="btn submit-btn" onClick={(e) => props.handleSearch(e)}>Search</button>
+                <button className="btn clear-btn" onClick={(e) => props.handleClear(e)}>Clear</button>
+            </div>
             {props.error && <div className="error">{props.error}</div>}
         </form>
     )

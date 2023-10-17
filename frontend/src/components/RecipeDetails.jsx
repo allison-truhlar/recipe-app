@@ -23,8 +23,13 @@ export default function RecipeDetails({recipe}){
     }
 
     return(
-        <div className="card">
-            <h4>{recipe.name}</h4>
+        <div className="card recipe-card">
+            <div className="flex">
+                <h4>{recipe.name}</h4>
+                <button className="btn btn-outlined icon-btn trash-btn" onClick={()=>handleDeleteClick(recipe._id)}>
+                    <span className="material-symbols-outlined">delete</span>
+                </button>
+            </div>
             <p><strong>Ingredients</strong></p>
             {recipe.recipeIngredient.map((ingredient)=>(
                 <p>{ingredient}</p>))}
@@ -32,9 +37,6 @@ export default function RecipeDetails({recipe}){
            {recipe.recipeInstructions.map((instruction)=>(
                 <p>{instruction}</p>))}
             {recipe.url && <a href={recipe.url}>Visit the original recipe</a>}
-            <button className="btn delete-recipe-btn material-symbols-outlined" onClick={()=>handleDeleteClick(recipe._id)}>
-                delete
-            </button>
         </div>
     )
 }

@@ -7,7 +7,8 @@ export default function RecipeManualForm() {
     const [name, setName] = useState("")
     const [recipeIngredient, setRecipeIngredient] = useState("")
     const [recipeInstructions, setRecipeInstructions] = useState("")
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(false)
+    const [msg, setMsg] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
     const {dispatch} = useContext(RecipesContext)
     const {user} = useContext(AuthContext)
@@ -48,6 +49,7 @@ export default function RecipeManualForm() {
             }
         })
         const json = await response.json()
+        setMsg(json.msg)
 
         if (!response.ok) {
             setError(json.error)
@@ -58,14 +60,14 @@ export default function RecipeManualForm() {
             setName("")
             setRecipeIngredient("")
             setRecipeInstructions("")
-            setError(null)
+            setError(false)
             setEmptyFields([])
-            dispatch({ type: "CREATE_RECIPE", payload: json })
+            dispatch({ type: "CREATE_RECIPE", payload: json.recipe })
         }
     }
 
     return(
-        <form className="card" onSubmit={handleSubmit}>
+        <form className="card manual-card" onSubmit={handleSubmit}>
             <h3>Add Recipe Manually</h3>
             
             <label>Recipe URL (optional):</label>
@@ -102,7 +104,9 @@ export default function RecipeManualForm() {
             />
 
             <button class="btn submit-btn">Add recipe</button>
-            {error && <div className="error">{error}</div>}
+            <div className={`${error && "error"} msg`}>
+                {msg}
+            </div>
         </form>
     )
 }

@@ -4,7 +4,8 @@ import { AuthContext } from "../context/AuthContext"
 
 export default function RecipeUrlForm() {
     const [url, setUrl] = useState("")
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(false)
+    const [msg, setMsg] = useState(null)
     const {dispatch} = useContext(RecipesContext)
     const {user} = useContext(AuthContext)
 
@@ -25,22 +26,22 @@ export default function RecipeUrlForm() {
         })
 
         const json = await response.json()
+        setMsg(json.msg)
         console.log(response)
 
         if(!response.ok){
-            setError(json.error)
+            setError(true)
         }
         if(response.ok){
             setUrl("")
-            setError(null)
-            dispatch({type: "CREATE_RECIPE", payload: json})
+            setError(false)
+            dispatch({type: "CREATE_RECIPE", payload: json.recipe})
         }
-
 
     }
 
     return(
-        <form className="card" onSubmit={handleSubmit}>
+        <form className="card url-card" onSubmit={handleSubmit}>
             <h3>Add Recipe with URL</h3>
             
             <label>Recipe URL:</label>
@@ -50,8 +51,10 @@ export default function RecipeUrlForm() {
                 value={url}
             />
 
-            <button class="btn submit-btn">Add recipe</button>
-            {error && <div className="error">{error}</div>}
+            <button className="btn submit-btn">Add recipe</button>
+                <div className={`${error && "error"} msg`}>
+                    {msg}
+                </div>
         </form>
     )
 }

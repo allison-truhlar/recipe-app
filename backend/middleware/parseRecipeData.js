@@ -38,7 +38,7 @@ async function parseRecipeData(req, res, next){
             recipeInstructions: recipeObj.recipeInstructions.map(instruction => instruction.text)
         }
     } else {
-        return res.status(400).json({error: "Cannot read recipe. Please input recipe details manually."})
+        return res.status(400).json({msg: "Cannot read recipe. Please input recipe details manually."})
     }
     
     req.body = recipe
