@@ -103,6 +103,10 @@ header h1{
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
 
+.utility-card-container{
+  width: 100%;
+}
+
 /* Select action card */
 .select-action-btn-container{
   display: flex;
@@ -200,8 +204,6 @@ input, textarea {
 }
 
 .msg {
-  
-  
   margin-top: 1.25rem;
 }
 
