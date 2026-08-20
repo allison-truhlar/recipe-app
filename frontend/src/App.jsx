@@ -1,34 +1,19 @@
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-
-// pages and components
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from "./routes/Home"
-import Signup from "./routes/Signup"
-import Login from "./routes/Login"
+import Manage from "./routes/Manage"
 import LandingPageLayout from "./layouts/LandingPageLayout"
 
 const router = createBrowserRouter([
-    {
-      path:"/",
-      element: <LandingPageLayout />,
-      children:[
-        {
-            path:"/",
-            element:<Home/>
-        },
-        {
-          path:"/signup",
-          element:<Signup/>
-        },
-        {
-          path:"/login",
-          element:<Login/>
-        }
-      ]
-    }
-  ])
+  {
+    path: "/",
+    element: <LandingPageLayout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/manage", element: <Manage /> },
+    ],
+  },
+])
 
-export default function App(){
-    return(
-        <RouterProvider router={router}/>
-    )
+export default function App() {
+  return <RouterProvider router={router} />
 }
