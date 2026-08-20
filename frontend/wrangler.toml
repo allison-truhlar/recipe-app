@@ -6,6 +6,3 @@ pages_build_output_dir = "dist"
 binding = "DB"
 database_name = "recipe-keeper"
 database_id = "local-placeholder"   # replaced with the real id in Task 9
-
-[vars]
-ENVIRONMENT = "development"          # local only; production leaves this unset so Access is enforced

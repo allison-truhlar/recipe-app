@@ -7,7 +7,7 @@ export async function onRequestPost({ request, env }) {
   const { results } = await env.DB
     .prepare(
       "SELECT id, name, url, recipeIngredient, recipeInstructions, created_at FROM recipes " +
-      "WHERE name LIKE ?1 OR recipeIngredient LIKE ?1 ORDER BY created_at DESC"
+      "WHERE name LIKE ?1 OR recipeIngredient LIKE ?1 ORDER BY id DESC"
     )
     .bind(like)
     .all();
