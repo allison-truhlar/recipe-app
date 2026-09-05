@@ -10,7 +10,7 @@ export const recipesReducer = (state, action) => {
             }
         case "CREATE_RECIPE":
             return {
-                recipes: [action.payload, ...state.recipes]
+                recipes: [action.payload, ...(state.recipes || [])]
             }
         case "DELETE_RECIPE":
             return {
