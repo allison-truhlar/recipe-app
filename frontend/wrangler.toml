@@ -5,4 +5,4 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "recipe-keeper"
-database_id = "local-placeholder"   # replaced with the real id in Task 9
+database_id = "2fc09e89-e044-4136-a082-10a385eab33e"
