@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom"
-
 export default function Navbar() {
   return (
     <header>
@@ -7,7 +5,8 @@ export default function Navbar() {
         <nav>
           <div className="flex">
             <h1>Recipe Keeper</h1>
-            <Link className="btn btn-outlined" to="/manage">Manage recipes</Link>
+            {/* Plain <a>, not <Link>: /manage must be a full page load so Cloudflare Access can gate it. */}
+            <a className="btn btn-outlined" href="/manage">Manage recipes</a>
           </div>
           <p>Your favorite recipes, in one place</p>
         </nav>
