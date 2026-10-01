@@ -1,7 +1,7 @@
 import { json, requireAccess } from "../../_lib/db.js";
 
 export async function onRequestDelete({ request, env, params }) {
-  const denied = requireAccess(request, env);
+  const denied = await requireAccess(request, env);
   if (denied) return denied;
 
   const id = Number(params.id);

@@ -1,7 +1,7 @@
 import { rowToRecipe, json, requireAccess } from "../../_lib/db.js";
 
 export async function onRequestPost({ request, env }) {
-  const denied = requireAccess(request, env);
+  const denied = await requireAccess(request, env);
   if (denied) return denied;
 
   const { url, name, recipeIngredient, recipeInstructions } = await request.json();

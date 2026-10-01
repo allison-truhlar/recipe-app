@@ -2,7 +2,7 @@ import { rowToRecipe, json, requireAccess } from "../../_lib/db.js";
 import { parseRecipe } from "../../_lib/parse-recipe.js";
 
 export async function onRequestPost({ request, env }) {
-  const denied = requireAccess(request, env);
+  const denied = await requireAccess(request, env);
   if (denied) return denied;
 
   const { url } = await request.json();
