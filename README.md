@@ -1,10 +1,6 @@
 # 🗃️ Recipe Keeper
 
-Built with MongoDB, Express, React, and NodeJS.<br><br>
-![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+Built with React. Deployed via Cloudflare Pages Functions, Cloudflare D1, and Cloudflare Access.
 
 ## Overview 👩🏻‍💻
 
@@ -14,22 +10,46 @@ Cooking is a big part of my life. I have a lot of online recipes bookmarked, but
 1. View them without ads or reading a long personal journey
 
 #### Product Vision
-- The Recipe Keeper app will allow the user to easily save and view online recipes, and to search their entire recipe collection by ingredient. 
-- For styling, I would love for the individual recipes to look like they're on recipe cards.
+- The Recipe Keeper app allows any use to search the recipe collection by ingredient and view recipes. Authorized users can save and modify recipes.
 
 #### MVP Use Cases
-- The user can manually save and delete recipes from a collection
-- The user can import online recipes that utilize the standard Recipe Schema and have the recipe name, URL, ingredients, and instructions automatically parsed and saved by the app.
-- The user can view recipes in-app, and link out to the original recipe
-- The user can search their recipe collection by ingredient(s)
+- All usres can view recipes in-app and link out to the original recipe, if applicable.
+- All users can search the recipe collection by ingredient(s).
+- Authorized users can manually save and delete recipes.
+- Authorized users can import online recipes that utilize the standard Recipe Schema and have the recipe name, URL, ingredients, and instructions automatically parsed and saved by the app.
 
 ## Road Map 🗺️
 * [X] Add functionality to parse recipes that utilize the standard Recipe Schema.
-* [X] Add authenitication so users can create and see personal recipe collections.
-* [X] Add functionality to search by ingredient across all a user's saved recipes.
+* [X] Add functionality to search by ingredient across all saved recipes.
+* [X] Move to Cloudflare Pages, Functions, and D1, with Cloudflare Access gating edits (replaces the original MongoDB/Express/password login version).
 * [ ] Make the app fully responsive for mobile devices.
-* [ ] Change the styling to make the individual recipes appear like they are on recipe cards.
 * [ ] Add functionality so that the user can edit a recipe within the app.
 
+## Run locally 🛠️
+
+One time setup: 
+
+```bash
+npm install
+echo 'ENVIRONMENT=development' > .dev.vars        # skips the Access check locally
+npm wrangler d1 execute recipe-keeper --local --file=./schema.sql # initializes the local db
+```
+
+Routine local development:
+
+Terminal 1:
+```bash
+npm run dev
+```
+
+Terminal 2: 
+```bash
+npm run api
+```
+Then open http://localhost:8788.
+
+Run the Function tests with `npm test`.
+
 ## Acknowledgements ✨
-The basics of the app were developed with the help of the [Net Ninja MERN Stack Tutorial](https://github.com/iamshaunjp/MERN-Stack-Tutorial).
+- The first iteration of the app was developed with the help of the [Net Ninja MERN Stack Tutorial](https://github.com/iamshaunjp/MERN-Stack-Tutorial).
+- The second iteration was migrated to using Cloudflare Pages, Functions, and D1, with Cloudflare Access gating edits with the help of Claude Code.
